@@ -1,7 +1,16 @@
+import Deportes from "./components/Deportes"
+import Footer from "./components/Footer"
+
+
+
 function App() {
 
   return (
-    <h1>App.jsx</h1>
+    <div>
+      {/* <Footer/> */}
+      <Deportes/>
+    </div>
+    
   )
 }
 
