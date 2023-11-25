@@ -3,6 +3,7 @@ import Footer from "./components/Footer"
 import Info from "./components/Info"
 import Restaurantes from "./components/Restaurantes"
 import Salas from "./components/Salas"
+import SalasView from "./components/SalasView"
 
 
 
@@ -13,8 +14,9 @@ function App() {
       {/* <Footer/> */}
       {/* <Deportes/> */}
       {/* <Salas/> */}
-      <Restaurantes/>
-      <Info/>
+      {/* <Restaurantes/> */}
+      {/* <Info/> */}
+      <SalasView/>
     </div>
     
   )
