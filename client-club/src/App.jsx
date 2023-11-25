@@ -1,5 +1,6 @@
 import Deportes from "./components/Deportes"
 import Footer from "./components/Footer"
+import Home from "./components/Home"
 import Info from "./components/Info"
 import Restaurantes from "./components/Restaurantes"
 import Salas from "./components/Salas"
@@ -16,7 +17,8 @@ function App() {
       {/* <Salas/> */}
       {/* <Restaurantes/> */}
       {/* <Info/> */}
-      <SalasView/>
+      {/* <SalasView/> */}
+      <Home/>
     </div>
     
   )
