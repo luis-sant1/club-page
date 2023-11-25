@@ -1,5 +1,6 @@
 import Deportes from "./components/Deportes"
 import Footer from "./components/Footer"
+import Restaurantes from "./components/Restaurantes"
 import Salas from "./components/Salas"
 
 
@@ -10,7 +11,8 @@ function App() {
     <div>
       {/* <Footer/> */}
       {/* <Deportes/> */}
-      <Salas/>
+      {/* <Salas/> */}
+      <Restaurantes/>
     </div>
     
   )
