@@ -3,6 +3,7 @@ import Eventos from "./components/Eventos"
 import Footer from "./components/Footer"
 import Home from "./components/Home"
 import Info from "./components/Info"
+import Login from "./components/Login"
 import NavBar from "./components/NavBar"
 import Restaurantes from "./components/Restaurantes"
 import Salas from "./components/Salas"
@@ -22,7 +23,8 @@ function App() {
       {/* <SalasView/> */}
       {/* <Home/> */}
       {/* <NavBar/> */}
-      <Eventos/>
+      {/* <Eventos/> */}
+      <Login/>
     </div>
     
   )
