@@ -1,4 +1,5 @@
 import Deportes from "./components/Deportes"
+import Eventos from "./components/Eventos"
 import Footer from "./components/Footer"
 import Home from "./components/Home"
 import Info from "./components/Info"
@@ -20,7 +21,8 @@ function App() {
       {/* <Info/> */}
       {/* <SalasView/> */}
       {/* <Home/> */}
-      <NavBar/>
+      {/* <NavBar/> */}
+      <Eventos/>
     </div>
     
   )
