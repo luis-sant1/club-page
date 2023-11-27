@@ -19,7 +19,15 @@ export default {
       'bubble-gum': '#ff77e9',
       'bermuda': '#78dcca',
       'brown': '#9A5832'
-    }
+    },
+        fontFamily: {
+      'sans': ['ui-sans-serif', 'system-ui'],
+      'serif': ['ui-serif', 'Georgia'],
+      'mono': ['ui-monospace', 'SFMono-Regular'],
+      'display': ['Oswald'],
+      'body': ['"Open Sans"'],
+      'Qwitcher':['Qwitcher+Grypen'],
+      }
   },
   plugins: [require('flowbite/plugin')],
 }

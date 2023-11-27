@@ -59,7 +59,7 @@ export default function CarruselSalas (){
     ]
     return(
         
-            <div className='w-full  m-auto pt-10 pb-10 md:pt-16 '>
+            <div className='w-full  m-auto pt-3 pb-3  '>
                 
                 <Carousel
                     responsive={responsive}>

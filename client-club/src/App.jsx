@@ -1,5 +1,6 @@
 import Login from "./components/Login"
 import SalasView from "./components/SalasView"
+import Landing from "./components/landing"
 
 
 
@@ -9,6 +10,7 @@ function App() {
     <div>
       {/* <SalasView/> */}
       {/* <Login/> */}
+      <Landing/>
     </div>
     
   )

@@ -6,7 +6,7 @@ export default function Footer() {
                 <div className="bg-[rgba(230,230,230,1)] dark:bg-gray-900 dark:text-white text-black">
                     <div className="w-full h-5/6 bg-[rgba(230,230,230,1)] dark:bg-gray-900 dark:text-white md:flex ">
                         <div className="pl-8 pt-8 md:w-1/3 md:pl-10 md:pt-12 md:pb-6 lg:pl-20">
-                            <p className="font-light text-2xl pb-4 md:text-3xl md:pb-6 lg:text-4xl">Perubiam.</p>
+                            <p className="logo font-semibold text-[rgba(95,111,82,1)] text-4xl pb-4 md:text-5xl md:pb-6 lg:text-6xl">Canaima</p>
                             <p className="pb-4 md:pb-6"><a href="" className="font-light md:text-xl lg:text-2xl">Acerca de</a></p>
                             <p className="pb-4 md:pb-6"><a href="" className="font-light md:text-xl lg:text-2xl">Brand</a></p>
                             <p className="pb-4 md:pb-6"><a href="" className="font-light md:text-xl lg:text-2xl">Blog</a></p>
