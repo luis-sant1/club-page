@@ -70,10 +70,13 @@ export default function CarouselHome (){
                         
                         
                 </Carousel>
-                <div className="absolute z-10  m-auto left-0 right-0  top-[30%] text-black text-center md:pl-3 md:pr-3" >
-                    <h2 className="text-xl font-light pb-8 md:text-5xl md:pb-14">Titulo del club</h2>
+                <div className="absolute z-5  m-auto left-0 right-0  top-[30%] text-black text-center md:pl-3 md:pr-3 lg:pt-12" >
+                    <h2 className="text-4xl font-bold  md:text-6xl text-white">Club Campestre</h2>
+                    <h2 className='logo font-semibold text-7xl text-[rgba(95,111,82,1)] pb-8 md:text-8xl lg:pb-12'>Canaima</h2>
                     
-                    <p className="font-light md:text-2xl">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolor quidem optio rerum error ipsam itaque dignissimos excepturi, aspernatur suscipit perspiciatis tenetur ipsa odit minus ex veritatis non praesentium nemo?</p>
+                    <div className='lg:flex lg:justify-center'>
+                        <p className="font-light text-white md:text-2xl lg:w-6/12">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolor quidem optio rerum error ipsam itaque dignissimos excepturi, aspernatur suscipit perspiciatis tenetur ipsa odit minus ex veritatis non praesentium nemo?</p>
+                    </div>
             </div>
             </div>
 
