@@ -1,3 +1,6 @@
+import { BrowserRouter } from "react-router-dom"
+
+
 import Deportes from "./components/Deportes"
 import Eventos from "./components/Eventos"
 import Footer from "./components/Footer"
@@ -14,7 +17,7 @@ import SalasView from "./components/SalasView"
 function App() {
 
   return (
-    <div>
+    <BrowserRouter>
       {/* <Footer/> */}
       {/* <Deportes/> */}
       {/* <Salas/> */}
@@ -25,7 +28,7 @@ function App() {
       {/* <NavBar/> */}
       {/* <Eventos/> */}
       <Login/>
-    </div>
+    </BrowserRouter>
     
   )
 }
