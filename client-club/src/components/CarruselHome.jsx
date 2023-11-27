@@ -1,7 +1,7 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import HomeDesing from './HomeDesing';
-export default function CarouselHome (){
+export default function CarouselHome() {
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -20,7 +20,7 @@ export default function CarouselHome (){
             breakpoint: { max: 464, min: 0 },
             items: 1
         }
-        
+
     };
     const data = [
         {
@@ -54,32 +54,32 @@ export default function CarouselHome (){
             "img": "https://es.hotellebayeux.com/usermedia/photo-636567303628543623-2.jpg?dummy=0&h=800"
         }
     ]
-    return(
-        
-            <div className=''>
-                
-                <Carousel
-                    responsive={responsive}>
-                        {
-                            data?.map((x, i) => {
-                                return ( 
-                                    <HomeDesing key={i} type={x.type} promo={x.promo} img={x.img}/>
-                                )
-                            })
-                        }
-                        
-                        
-                </Carousel>
-                <div className="absolute z-5  m-auto left-0 right-0  top-[30%] text-black text-center md:pl-3 md:pr-3 lg:pt-12" >
-                    <h2 className="text-4xl font-bold  md:text-6xl text-white">Club Campestre</h2>
-                    <h2 className='logo font-semibold text-7xl text-[rgba(95,111,82,1)] pb-8 md:text-8xl lg:pb-12'>Canaima</h2>
-                    
-                    <div className='lg:flex lg:justify-center'>
-                        <p className="font-light text-white md:text-2xl lg:w-6/12">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolor quidem optio rerum error ipsam itaque dignissimos excepturi, aspernatur suscipit perspiciatis tenetur ipsa odit minus ex veritatis non praesentium nemo?</p>
-                    </div>
-            </div>
-            </div>
+    return (
 
-            
+        <div className=''>
+
+            <Carousel
+                responsive={responsive}>
+                {
+                    data?.map((x, i) => {
+                        return (
+                            <HomeDesing key={i} type={x.type} promo={x.promo} img={x.img} />
+                        )
+                    })
+                }
+
+
+            </Carousel>
+            <div className="absolute z-5  m-auto left-0 right-0  top-[30%] text-black text-center md:pl-3 md:pr-3 lg:pt-12" >
+                <h2 className="text-4xl font-bold  md:text-6xl text-white">Club Campestre</h2>
+                <h2 className='logo font-semibold text-7xl text-[rgba(95,111,82,1)] pb-8 md:text-8xl lg:pb-12'>Canaima</h2>
+
+                <div className='lg:flex lg:justify-center'>
+                    <p className="font-light text-white md:text-2xl lg:w-6/12">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolor quidem optio rerum error ipsam itaque dignissimos excepturi, aspernatur suscipit perspiciatis tenetur ipsa odit minus ex veritatis non praesentium nemo?</p>
+                </div>
+            </div>
+        </div>
+
+
     )
 }

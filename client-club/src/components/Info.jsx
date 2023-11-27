@@ -22,7 +22,7 @@ export default function Info() {
                 initial="hidden"
                 animate={mainControls}
                 transition={{ duration: 1, delay: 0.25}}>
-                <div ref={ref} ><h1 className="font-bold pl-5 text-[rgba(95,111,82,1)] text-4xl md:text-7xl md:pl-16 md:pb-0 lg:text-8xl lg:pl-20"  >Acerca de nosotros</h1></div>
+                <div ref={ref} ><h1 className="font-bold pl-5 text-[rgba(95,111,82,1)] text-4xl md:text-7xl md:pl-16 md:pb-0 lg:text-8xl lg:pl-20">Acerca de nosotros</h1></div>
             </motion.div>
             <div className="bg-[rgba(230,230,230,1)] w-full h-full  pb-10 md:flex lg:pb-20" id="info">
                 <div className="w-11/12 mr-auto ml-auto" >
