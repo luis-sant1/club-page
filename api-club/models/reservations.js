@@ -29,19 +29,10 @@ const Reservation = new Schema ({
         type: Number,
         required: true
     },
-    salon: {
-        type: Array,
-        defautl: []
-    },
-    
-    check: {
-        type: Boolean,
-        default: false
-    },
-    role: {
-        type: ["user", "admin"],
-        default: "user"
-    }
+    salon: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Salons",
+    }]
 },
 {
     timestamps : true,

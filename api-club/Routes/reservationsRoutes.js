@@ -4,6 +4,6 @@ const {createReservation} = require('../controllers/reservations')
 const {validateReservation} = require('../validators/reservations')
 
 router
-.post('/create', validateReservation,  createReservation);
+.post('/create',   createReservation);
 
 module.exports = router;

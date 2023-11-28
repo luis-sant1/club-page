@@ -1,4 +1,4 @@
-   const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const { Schema } = require('mongoose');
 
 const salonModel = new Schema({
@@ -20,21 +20,16 @@ const salonModel = new Schema({
       type: Array,
       default: []
    },
+   max: {
+      type: String
+   },
    feature: {
       type: String
    },
-   feature1: {
-      type: String
-   },
-   feature2: {
-      type: String
-   },
-   feature3: {
-      type: String
-   },
-   reservations: [{type: mongoose.Schema.Types.ObjectId,
-      ref: "Reservations"}]
+   reservations: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Reservations'}]
 }); 
 
 
-module.exports = mongoose.model('Products', prSchema);
+module.exports = mongoose.model('Salons', salonModel);
