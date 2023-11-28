@@ -10,7 +10,7 @@ const router = express.Router()
 router.get('/products',  getAll) // PARA TESTEO SE ESTÁN USANDO LOS MIDDLEWARE DE AUTENTICACIÓN Y VERIFICACIÓN DE ROL.
 
 // CREATE AN ITEM
-router.post('/createProduct', upload.single('imagen'), postItem)
+router.post('/createProduct', upload.array(['imagen']), postItem)
 
 // UPDATE AN ITEM
 router.put('/updateProduct/:_id', upload.single('imagen'), putItem)

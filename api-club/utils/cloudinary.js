@@ -17,7 +17,7 @@ const options = {
    overwrite: true,
 };
  
-const itemsFolder = 'rooms';
+const itemsFolder = 'canaima';
  
 const uploadImage = async (imagePath, folder) => {
    const optionsWithFolder = { ...options, folder };

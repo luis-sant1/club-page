@@ -16,24 +16,45 @@ const getAll =async(req,res)=>{
 
  const postItem = async (req, res) => {
    try {
-     console.log(req) 
-      if (!req.file) return res.status(404).json({messageError: 'Debes agregar una imagen del item'})
-      const { path } = req.file;
+   //   console.log(req) 
+     
 
+      // return res.status( 200 ).json( {
+      //    msg: "uploaded",
+      //    data: urls
+      // })
+   
+
+      // if (!req.file) return res.status(404).json({messageError: 'Debes agregar una imagen del item'})
+      const urls = [];
+
+      const files = req.files
+
+      for (const file of files ) {
+         const {path} = file
+         const newPath =  await uploadImageEvent(path)
+
+         urls.push(newPath)
+
+         fs.unlinkSync(path)
+
+      }
       const { nombre, descripcion, imagen, precio, unidades, categoria } = req.body;
       let item = await prSchema.findOne({ nombre });
-      console.log(item);
+      // console.log(item);
       if (item) return res.status(404).json({messageError: 'Ya existe este item'});
 
       item = new prSchema({ nombre, descripcion, imagen, precio, unidades, categoria });
-      console.log(item);
-      if (path) {
-         const result = await uploadImageEvent(path)
-         await fs.unlink(path)
-         item.imagen = {public_id: result.public_id, secure_url: result.secure_url}
-      }
-      await item.save()
-      return res.status(200).json({item: item._id});
+      // console.log(item);
+         for (const object of urls){
+            console.log(object)
+            item.imagen.push({public_id: object.public_id, secure_url: object.secure_url})
+         }
+
+
+       
+      // await item.save()
+      return res.status(200).json({item: item});
    } catch (error) {
       // console.log(error.message);
       return res.status(500).json({messageError: error.message});

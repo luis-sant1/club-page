@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+   const mongoose = require('mongoose');
 const { Schema } = require('mongoose');
 
 const prSchema = new Schema({
@@ -10,14 +10,13 @@ const prSchema = new Schema({
       type: String,
       required: true
    },
-   imagen: {
-      type: Object,
+   imagen:[{
+      type: Object, 
       public_id: String,
-      secure_url: String,
-      default: null
-   },
+      secure_url: String
+   }],
    precio: {
-      type: String,
+      type: String,  
       required: true
    },
    unidades: {
