@@ -1,0 +1,20 @@
+import CarruselDeport from "./CarruselDeport";
+
+export default function Deportes() {
+    return(
+
+    <div className='w-full h-full pt-8 pb-10 md:pt-16 md:pb-14 lg:pt-20 lg:pb-20 dark:bg-gray-800 dark:text-white text-black bg-white' id="sports">
+        <h1 className='font-bold pl-14 text-[rgba(95,111,82,1)] text-4xl md:text-7xl md:pl-16 md:pb-0 lg:text-8xl lg:pl-20' >Deportes</h1>
+        <div className='flex w-full h-5/6 bg-[rgba(230,230,230,1)] pt-10 pb-5 lg:pb-10 dark:bg-gray-900' >
+            <div className='w-11/12 overflow-hidden m-auto' >
+                
+                <CarruselDeport/>
+            </div>
+        </div>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+        </style>
+    </div>
+
+    )
+}

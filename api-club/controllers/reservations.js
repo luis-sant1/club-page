@@ -1,4 +1,5 @@
 const Reservation = require('../models/reservations')
+const salonModel = require('../models/salons')
 const { validateReservation } = require('../validators/reservations')
 const nodeMailer = require('nodemailer')
 const myEmail = process.env.EMAIL
@@ -6,19 +7,8 @@ const passwordEmail = process.env.PASS
 const createReservation = async (req, res) => {
     try {
         const { body } = req
-        const price = (type) => {
-            if(type == "Matrimonial"){
-                return "55$ por noche"
-            }else if(type == "3 Personas"){
-                return "70$ por noche"
-            }else if(type == "4 Personas"){
-                return "85$ por noche"
-            }else if(type == "5 Personas"){
-                return "100$ por noche"
-            }else if(type == "6 Personas"){
-                return "115$ por noche"
-            }
-        }
+        const salonName = await salonModel.findById(body.salon)
+        
         let config = nodeMailer.createTransport({
             host: 'smtp.gmail.com',
             post: 587,
@@ -41,19 +31,7 @@ const createReservation = async (req, res) => {
             Fecha de entrada: ${req.body.entryDate.toString()}
             Fecha de salida: ${req.body.exitDate.toString()}
             Número de teléfono: ${req.body.phone.toString()}
-            Dirección: ${req.body.address.toString()}
-            Habitación deseada: ${req.body.room.toString()}
-            
-            En seguida nuestros métodos de pago:
-            Transferencia:
-            Banco del Amor Patrio AMIGO.
-            Cuenta bancaria: 02359811461770261430
-            RIF: 123FR1233
-
-            Zelle:
-            E-mail: perubiamhotelsuits@gmail.com
-
-            El precio total para su habitación de ${req.body.room.toString()} es de ${price(req.body.room.toString())}
+            Salón reservado: ${salonName.name}
             `
         }
 
@@ -67,9 +45,9 @@ const createReservation = async (req, res) => {
                 console.log("Email sent successfully");
             }
         })
-        const { name, lastName, email, entryDate, exitDate, address, check, room, phone } = body
+        const { name, lastName, email, entryDate, exitDate, phone, salon} = body
 
-
+        
         const newReservation = new Reservation({
             name,
             lastName,
@@ -77,12 +55,12 @@ const createReservation = async (req, res) => {
             entryDate,
             exitDate,
             phone,
-            address,
-            room,
-            check,
+            salon: salonName._id
         })
         console.log(newReservation)
         const reservationSaved = await newReservation.save()
+        salonName.reservations = salonName.reservations.concat(reservationSaved._id)
+        await salonName.save()
         res.status(200).json({
             reservation: reservationSaved
         })
