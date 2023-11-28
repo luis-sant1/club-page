@@ -29,15 +29,11 @@ const Reservation = new Schema ({
         type: Number,
         required: true
     },
-    address: {
-        type: String,
-        required: true
-    },
-    room: {
+    salon: {
         type: Array,
-        defautl: [],
-        require: true
+        defautl: []
     },
+    
     check: {
         type: Boolean,
         default: false

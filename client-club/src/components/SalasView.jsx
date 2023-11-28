@@ -1,6 +1,7 @@
 import SalasButtons from './SalasButtons'
-
+import {useAuth} from './context/AuthContext'
 export default function SalasView() {
+    const {isAuthenticated} = useAuth()
     return(
         <div className='w-full h-full dark:bg-gray-800  bg-white'>
             <div className="m-0 w-full h-full group  flex text-center">
@@ -53,8 +54,10 @@ export default function SalasView() {
 
                 <CarouselReviews/>
             </div> */}
-
-            <SalasButtons />
+            {
+                isAuthenticated && <SalasButtons />
+            }
+           
 
         <style>
                 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
