@@ -1,6 +1,6 @@
 const { body, param,  validationResult } = require('express-validator');
 const reservations = require('../models/reservations')
-
+const moment = require('moment')
 const validateReservation = [
     body('name')
         .exists()
@@ -33,7 +33,7 @@ const validateReservation = [
         .isDate()
         .custom(async (value, { req }) => {
             const { _id } = req.params
-            const { exitDate, entryDate } = req.body
+            const { exitDate } = req.body
             const reservation = await reservations.find({
                 salon: _id
             })
@@ -44,7 +44,7 @@ const validateReservation = [
                     reserEntry = x.entryDate
             })
             const newExitDateInput = moment(exitDate).format("YYYY-MM-DD")
-            const newEntryDateInput = moment(entryDate).format("YYYY-MM-DD")
+            const newEntryDateInput = moment(value).format("YYYY-MM-DD")
             const newExitDateDb = moment(reserExit).format("YYYY-MM-DD")
             const newEntryDateDb = moment(reserEntry).format("YYYY-MM-DD")
             if (newEntryDateInput >= newEntryDateDb && newEntryDateInput <= newExitDateDb) {
@@ -86,9 +86,10 @@ const validateReservation = [
             max: 9
         })
         .withMessage('Número teléfonico debe contener 9 carácteres.'),
-    param('salon')
+    param('_id')
         .exists()
-        .notEmpty(),
+        .notEmpty()
+        .isMongoId(),
     (req, res, next) => {
         try {
             validationResult(req).throw() // Busca error
