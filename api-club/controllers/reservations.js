@@ -1,14 +1,17 @@
+const reservations = require('../models/reservations')
 const Reservation = require('../models/reservations')
 const salonModel = require('../models/salons')
 const { validateReservation } = require('../validators/reservations')
 const nodeMailer = require('nodemailer')
 const myEmail = process.env.EMAIL
 const passwordEmail = process.env.PASS
+const moment = require('moment')
 const createReservation = async (req, res) => {
     try {
         const { body } = req
-        const salonName = await salonModel.findById(body.salon)
-        
+        const { _id } = req.params
+        const salonName = await salonModel.findById(_id)
+
         let config = nodeMailer.createTransport({
             host: 'smtp.gmail.com',
             post: 587,
@@ -22,7 +25,7 @@ const createReservation = async (req, res) => {
             subject: 'Reservación: Métodos de pago aceptados. Perubiam',
             to: req.body.email,
             text:
-            `Querido cliente, hemos recibido la información de su reservación, procesaremos manualmente la información dada por usted para asegurar que usted y su familia puedan disfrutar de una inolvidable estadía en nuestro Hotel. 
+                `Querido cliente, hemos recibido la información de su reservación, procesaremos manualmente la información dada por usted para asegurar que usted y su familia puedan disfrutar de una inolvidable estadía en nuestro Hotel. 
 
             Aquí están los datos de su reservación:
             E-mail: ${req.body.email.toString()}
@@ -45,15 +48,36 @@ const createReservation = async (req, res) => {
                 console.log("Email sent successfully");
             }
         })
-        const { name, lastName, email, entryDate, exitDate, phone, salon} = body
+        const { name, lastName, email, entryDate, exitDate, phone, salon } = body
 
-        
+
+        const reservation = await reservations.find({
+            salon: _id
+        })
+        let reserExit 
+        let reserEntry
+        reservation?.map((x) =>{
+            reserExit = x.exitDate,
+            reserEntry = x.entryDate
+        })
+
+        const newExitDateInput = moment(exitDate).format("YYYY-MM-DD")
+        const newEntryDateInput = moment(entryDate).format("YYYY-MM-DD")
+        const newExitDateDb = moment(reserExit).format("YYYY-MM-DD")
+        const newEntryDateDb = moment(reserEntry).format("YYYY-MM-DD")
+
+        if(newEntryDateInput >= newEntryDateDb && newEntryDateInput <= newExitDateDb){
+            return res.send("Fecha en reserva")
+        }else if(newExitDateInput >= newEntryDateDb && newExitDateInput <= newExitDateDb){
+            return res.send("Fecha en reserva")
+        }
+
         const newReservation = new Reservation({
             name,
             lastName,
             email,
-            entryDate,
-            exitDate,
+            entryDate: newEntryDateInput,
+            exitDate: newExitDateInput,
             phone,
             salon: salonName._id
         })
@@ -62,7 +86,7 @@ const createReservation = async (req, res) => {
         salonName.reservations = salonName.reservations.concat(reservationSaved._id)
         await salonName.save()
         res.status(200).json({
-            reservation: reservationSaved
+            reservation: newReservation
         })
     } catch (error) {
         console.log("Error de la reservación " + error)
@@ -70,4 +94,17 @@ const createReservation = async (req, res) => {
     }
 }
 
-module.exports = { createReservation }
+const getAll = async (req, res) => {
+    try {
+        const results = await reservations.find({})
+        return res.status(200).json({
+            data: results
+        })
+    } catch (error) {
+        return res.status(500).json({
+            error: error
+        })
+    }
+}
+
+module.exports = { createReservation, getAll }

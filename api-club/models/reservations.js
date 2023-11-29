@@ -12,8 +12,7 @@ const Reservation = new Schema ({
     },
     email: {
         type: String,
-        required: true,
-        unique: true
+        unique: false
     },
     entryDate: {
         type: Date,
@@ -32,6 +31,7 @@ const Reservation = new Schema ({
     salon: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Salons",
+        required: true
     }]
 },
 {
