@@ -49,29 +49,8 @@ const createReservation = async (req, res) => {
             }
         })
         const { name, lastName, email, entryDate, exitDate, phone, salon } = body
-
-
-        const reservation = await reservations.find({
-            salon: _id
-        })
-        let reserExit 
-        let reserEntry
-        reservation?.map((x) =>{
-            reserExit = x.exitDate,
-            reserEntry = x.entryDate
-        })
-
         const newExitDateInput = moment(exitDate).format("YYYY-MM-DD")
         const newEntryDateInput = moment(entryDate).format("YYYY-MM-DD")
-        const newExitDateDb = moment(reserExit).format("YYYY-MM-DD")
-        const newEntryDateDb = moment(reserEntry).format("YYYY-MM-DD")
-
-        if(newEntryDateInput >= newEntryDateDb && newEntryDateInput <= newExitDateDb){
-            return res.send("Fecha en reserva")
-        }else if(newExitDateInput >= newEntryDateDb && newExitDateInput <= newExitDateDb){
-            return res.send("Fecha en reserva")
-        }
-
         const newReservation = new Reservation({
             name,
             lastName,
