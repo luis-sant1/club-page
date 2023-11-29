@@ -25,7 +25,7 @@ function App() {
       
           <Route path="/*" element={<Landing />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/salasview" element={<SalasView />} />
+          <Route path="/salasview/:id" element={<SalasView />} />
           <Route path="/test" element={<Test />} />
         </Routes>
         <Footer />
