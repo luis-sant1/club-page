@@ -13,6 +13,7 @@ import ProtectedRoutes from './components/context/ProtectedRoutes'
 import ScrollToHashElement from './utils/ScrollToHashElement'
 import ScrollToTop from './utils/ScrollToTop'
 import Test from './components/Test'
+import Form from './components/Form'
 function App() {
 
   return (
@@ -25,8 +26,9 @@ function App() {
       
           <Route path="/*" element={<Landing />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/salasview" element={<SalasView />} />
+          <Route path="/salasview/:id" element={<SalasView />} />
           <Route path="/test" element={<Test />} />
+          <Route path="/form/:id" element={<Form />} />
         </Routes>
         <Footer />
     </BrowserRouter>

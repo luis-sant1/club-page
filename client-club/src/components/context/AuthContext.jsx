@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 import { createContext, useContext, useState, useEffect} from "react";
-import {   logout, allRooms } from "../../api/requests";
+import {   logout, getAllSalons } from "../../api/requests";
 import { login, verify } from '../../api/reqCredentials';
 export const AuthContext = createContext();
 export const useAuth = () => {                           // Usa el contexto 
@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     const [adminAuth, setAdminAuth] = useState(false)
     const [isAuthenticated, setIsAuthenticated] = useState(null) 
     const [error, setError] = useState("")
-    const [rooms, setRooms] = useState([])
+    const [salons, setSalons] = useState([])
     const [loadData, setLoadData] = useState(null)
     const signin = async (user) => {
         try {
@@ -92,29 +92,29 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        const fetchRooms = async () => {
+        const fetchsSalons = async () => {
             try {
-               const res = await allRooms()
-               setRooms(res.data?.rooms)
+               const res = await getAllSalons()
+               setSalons(res.data?.data)
                
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchRooms();
+        fetchsSalons();
     }, [])
-    useEffect(() => {
-        const fetchRooms = async () => {
-            try {
-               const res = await allRooms()
-               setRooms(res.data?.rooms)
-               
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchRooms();
-    }, [loadData])
+        // useEffect(() => {
+        //     const fetchRooms = async () => {
+        //         try {
+        //         const res = await getAllSalons()
+        //         setSalons(res.data?.salons)
+                
+        //         } catch (error) {
+        //             console.log(error)
+        //         }
+        //     }
+        //     fetchRooms();
+        // }, [loadData])
     return (
         <AuthContext.Provider value={{ //Export 
             setShow,
@@ -125,7 +125,7 @@ export const AuthProvider = ({ children }) => {
             adminAuth,
             setUser, 
             error,
-            rooms,
+            salons,
             setLoadData 
         }}>
             {children}
