@@ -19,22 +19,23 @@ export default function Formulario() {
 
     const onSubmit = handleSubmit(async (values) => {
         try {
-            const res = await formReq(values);
-            if (res) {
-                let x = false
-                Swal.fire({
-                    title: "¡Reservación enviada!",
-                    text: "Recibiras un correo de confirmación a: " + values.email,
-                    icon: "success",
-                    confirmButtonColor: "#9A5832"
-                });
+            console.log(values)
+            // const res = await formReq(values);
+            // if (res) {
+            //     console.log(values)
+                // Swal.fire({
+                //     title: "¡Reservación enviada!",
+                //     text: "Recibiras un correo de confirmación a: " + values.email,
+                //     icon: "success",
+                //     confirmButtonColor: "#9A5832"
+                // });
                 
-            }
+            // }
         } catch (error) {
             console.log(error.response.data.error)
-            setError(error.response.data.error)
+            // setError(error.response.data.error)
         }
-        toHome()
+        // toHome()
     })
         ;
     return (
@@ -97,10 +98,10 @@ export default function Formulario() {
                         </div>
 
                         <div className='grid grid-cols-2 '>
-                            <input type="datetime"
+                            <input type="date"
                                 {...register('entryDate', { required: true })}
                                 className='text-black font-light h-10 w-8/12 border border-solid border-black p-2' />
-                            <input type="datetime"
+                            <input type="date"
                                 {...register('exitDate', { required: true })}
                                 className='text-black font-light h-10 w-8/12 border border-solid border-black p-2' />
                         </div>
@@ -133,32 +134,16 @@ export default function Formulario() {
                             </div>
                         )
                     }
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Dirección</label>
-                    <div className='pt-1'>
-                        <input type="text"
-                            {...register('address', { required: true, minLength: 3, maxLength: 120, })}
-                            className='text-black font-light w-full border border-solid border-black grid h-10 p-2' />
-                    </div>
-                    {
-                        errors.address && (
-                            <div className='flex flex-nowrap mt-2'>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                                </svg>
-                                <p className='text-red-500 mx-1'>Campo Obligatorio.</p>
-                            </div>
-                        )
-                    }
                     <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Habitaciones disponibles:</label>
                     <div className='pt-1'>
                         <select
                             {...register('room', { required: true })}
                             className='font-light h-10 w-full border border-solid border-black p-2 text-black'>
                             <option value="" className='font-light'>Seleccionar:</option>
-                            <option value="Matrimonial" className='font-light'>Cancha de futbol</option>
+                            {/* <option value="Matrimonial" className='font-light'>Cancha de futbol</option>
                             <option value="3 Personas" className='font-light'>Cancha de Basquetbol</option>
                             <option value="4 Personas" className='font-light'>Cancha de Tenis</option>
-                            <option value="5 Personas" className='font-light'>Cancha de Bolas Criollas</option>
+                            <option value="5 Personas" className='font-light'>Cancha de Bolas Criollas</option> */}
                             <option value="6 Personas" className='font-light'>Salon de Fiestas</option>
                             <option value="6 Personas" className='font-light'>Teatro Pricipal</option>
                             <option value="6 Personas" className='font-light'>Teatro Secundario</option>
