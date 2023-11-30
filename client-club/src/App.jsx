@@ -28,7 +28,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/salasview/:id" element={<SalasView />} />
           <Route path="/test" element={<Test />} />
-          <Route path="/form" element={<Form />} />
+          <Route path="/form/:id" element={<Form />} />
         </Routes>
         <Footer />
     </BrowserRouter>

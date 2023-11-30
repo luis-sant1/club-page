@@ -75,7 +75,7 @@ export default function SalasView() {
                 <CarouselReviews/>
             </div> */}
             {
-                isAuthenticated && <SalasButtons />
+                isAuthenticated && <SalasButtons id = {id} />
             }
            
 

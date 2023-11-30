@@ -20,7 +20,8 @@ export default function Formulario() {
     const onSubmit = handleSubmit(async (values) => {
         try {
             console.log(values)
-            // const res = await formReq(values);
+            const res = await formReq(values);
+            console.log(res)
             // if (res) {
             //     console.log(values)
                 // Swal.fire({
@@ -126,33 +127,6 @@ export default function Formulario() {
                     </div>
                     {
                         errors.phone && (
-                            <div className='flex flex-nowrap mt-2'>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                                </svg>
-                                <p className='text-red-500 mx-1'>Campo Obligatorio.</p>
-                            </div>
-                        )
-                    }
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Habitaciones disponibles:</label>
-                    <div className='pt-1'>
-                        <select
-                            {...register('room', { required: true })}
-                            className='font-light h-10 w-full border border-solid border-black p-2 text-black'>
-                            <option value="" className='font-light'>Seleccionar:</option>
-                            {/* <option value="Matrimonial" className='font-light'>Cancha de futbol</option>
-                            <option value="3 Personas" className='font-light'>Cancha de Basquetbol</option>
-                            <option value="4 Personas" className='font-light'>Cancha de Tenis</option>
-                            <option value="5 Personas" className='font-light'>Cancha de Bolas Criollas</option> */}
-                            <option value="6 Personas" className='font-light'>Salon de Fiestas</option>
-                            <option value="6 Personas" className='font-light'>Teatro Pricipal</option>
-                            <option value="6 Personas" className='font-light'>Teatro Secundario</option>
-                            <option value="6 Personas" className='font-light'>Salon de Conferencias 1</option>
-                            <option value="6 Personas" className='font-light'>Salon de Conferencias 2</option>
-                        </select>
-                    </div>
-                    {
-                        errors.room && (
                             <div className='flex flex-nowrap mt-2'>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />

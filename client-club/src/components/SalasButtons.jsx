@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 
-export default function SalasButtons() {
+export default function SalasButtons(props) {
 
     return(
         <div className="pt-20 pb-5">
@@ -9,7 +10,7 @@ export default function SalasButtons() {
                     <button type="" className='font-light bg-[rgba(95,111,82,1)] w-32 h-10 text-white text-2xl'>Editar</button>
                 </div> */}
                 <div className='pt-5 grid justify-items-center mb-4 pl-1 md:pl-0 md:w-1/6'>
-                    <button type="" className='font-light bg-[rgba(95,111,82,1)] w-32 h-10 text-white text-2xl'>Reservar</button>
+                    <Link to={`/form/${props.id}`} className='font-light bg-[rgba(95,111,82,1)] w-32 h-10 text-white text-2xl'>Reservar</Link>
                 </div>
                 {/* <div className='pt-5 grid justify-items-center mb-4 pl-1 md:pl-0 md:w-1/6'>
                     <button type="" className='font-light bg-[rgba(95,111,82,1)] w-32 h-10 text-white text-2xl'>Eliminar</button>
