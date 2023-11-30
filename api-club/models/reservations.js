@@ -28,6 +28,10 @@ const Reservation = new Schema ({
         type: Number,
         required: true
     },
+    check:{
+        type: Boolean,
+        default: false
+    },
     salon: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Salons",

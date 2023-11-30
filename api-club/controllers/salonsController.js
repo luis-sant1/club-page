@@ -15,6 +15,19 @@ const getAll = async (req, res)=>{
     }
 }
 
+const getOne = async (req, res) => {
+    try{
+        const result = await salonModel.findById(req.params._id)
+        return res.status(200).json({
+            salon: result
+        })
+    }catch(error){
+        return res.status(404).json({
+            salon: error
+        })
+    }
+}
+
 const createSalon = async(req, res) => {
     try {
         const urls = [];
@@ -30,11 +43,11 @@ const createSalon = async(req, res) => {
          fs.unlinkSync(path)
 
       }
-      const { nombre, descripcion, imagen, mts2, site, max, feature} = req.body;
+      const { nombre, descripcion, imagen, mts2, site, max, feature, price} = req.body;
       let item = await salonModel.findOne({ nombre });
       if (item) return res.status(404).json({messageError: 'Ya existe este item'});
 
-      item = new salonModel({ nombre, descripcion, imagen, mts2, site, max, feature});
+      item = new salonModel({ nombre, descripcion, imagen, mts2, site, max, feature, price});
       // console.log(item);
          for (const object of urls){
             console.log(object)
@@ -80,6 +93,7 @@ try {
         "site": "Interior",
         "max": "200",
         "feature": "Escenario para presentaciones musicales o artísticas",
+        "price": "260"
     })
     const newSalon2 = new salonModel({
         "nombre": "Teatro Principal",
@@ -106,6 +120,7 @@ try {
         "site": "Interior",
         "max": "500",
         "feature": "Tiene un sistema de proyección y pantalla gigante",
+         "price": "450"
     })
     const newSalon3 = new salonModel({
         "nombre": "Teatro Secundario",
@@ -132,6 +147,7 @@ try {
         "site": "Interior",
         "max": "100",
         "feature": "Tiene una cafetería y una biblioteca anexas",
+        "price": "200"
     })  
     const newSalon4 = new salonModel({
         "nombre": "Salón de Conferencias 1",
@@ -158,6 +174,7 @@ try {
         "site": "Interior",
         "max": "80",
         "feature": "Tiene conexión a internet y servicio de catering",
+        "price": "80"
     })
     const newSalon5 = new salonModel({
         "nombre": "Salón de Conferencias 2",
@@ -184,6 +201,7 @@ try {
         "site": "Interior",
         "max": "80",
         "feature": "Tiene aire acondicionado y servicio de traducción simultánea",
+        "price": "60"
     })
     await newSalon1.save()
     await newSalon2.save()
@@ -203,5 +221,6 @@ try {
 module.exports = {
     getAll,
     createSalon,
-    insertMany
+    insertMany,
+    getOne
 }

@@ -9,8 +9,12 @@ const allRoomsUrl = import.meta.env.VITE_FETCH_ROOMS
 const oneRoomUrl = import.meta.env.VITE_FETCH_ONE_ROOMS
 const editRoomUrl = import.meta.env.VITE_FETCH_EDIT_ROOMS
 const deleteRoomUrl = import.meta.env.VITE_FETCH_DELETE_ROOMS
+const allSalonsUrl = import.meta.env.VITE_FETCH_SALONS
+const getOneSalonUrl = import.meta.env.VITE_FETCH_ONE_SALONS
 
-export const formReq = reservation =>  axios.post(create, reservation) // Función que recibe el url y la reservación.
+export const getAllSalons = () => axios.get(allSalonsUrl)
+export const getOneSalon = (id) => axios.get(getOneSalonUrl + id, id)
+export const formReq = (reservation, id) =>  axios.post(create + id, reservation) // Función que recibe el url y la reservación.
 export const comments = () => axios.get(comment)
 export const current = () => axios.get(currentClima)
 export const logout = () => axios.post(logoutUrl)

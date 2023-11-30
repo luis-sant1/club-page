@@ -90,6 +90,9 @@ const validateReservation = [
         .exists()
         .notEmpty()
         .isMongoId(),
+    body('check')
+    .exists()
+    .isBoolean(),
     (req, res, next) => {
         try {
             validationResult(req).throw() // Busca error
