@@ -14,7 +14,7 @@ const getOneSalonUrl = import.meta.env.VITE_FETCH_ONE_SALONS
 
 export const getAllSalons = () => axios.get(allSalonsUrl)
 export const getOneSalon = (id) => axios.get(getOneSalonUrl + id, id)
-export const formReq = reservation =>  axios.post(create, reservation) // Función que recibe el url y la reservación.
+export const formReq = (reservation, id) =>  axios.post(create + id, reservation) // Función que recibe el url y la reservación.
 export const comments = () => axios.get(comment)
 export const current = () => axios.get(currentClima)
 export const logout = () => axios.post(logoutUrl)

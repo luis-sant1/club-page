@@ -4,8 +4,9 @@ import { useState } from 'react'
 import Swal from 'sweetalert2'
 import 'sweetalert2/src/sweetalert2.scss'
 import { useAuth } from './context/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 export default function Formulario() {
+    const {id} = useParams()
     const navigate = useNavigate()
     const {setShow} = useAuth()
     const [error, setError] = useState([])
@@ -20,23 +21,23 @@ export default function Formulario() {
     const onSubmit = handleSubmit(async (values) => {
         try {
             console.log(values)
-            const res = await formReq(values);
+            const res = await formReq(values, id);
             console.log(res)
-            // if (res) {
-            //     console.log(values)
-                // Swal.fire({
-                //     title: "¡Reservación enviada!",
-                //     text: "Recibiras un correo de confirmación a: " + values.email,
-                //     icon: "success",
-                //     confirmButtonColor: "#9A5832"
-                // });
+            if (res) {
+                console.log(values)
+                Swal.fire({
+                    title: "¡Reservación enviada!",
+                    text: "Recibiras un correo de confirmación a: " + values.email,
+                    icon: "success",
+                    confirmButtonColor: "#9A5832"
+                });
                 
-            // }
+            }
         } catch (error) {
             console.log(error.response.data.error)
-            // setError(error.response.data.error)
+            return setError(error.response.data.error)
         }
-        // toHome()
+        toHome()
     })
         ;
     return (
