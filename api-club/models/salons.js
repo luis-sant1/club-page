@@ -26,6 +26,9 @@ const salonModel = new Schema({
    feature: {
       type: String
    },
+   price: {
+      type: String
+   },
    reservations: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Reservations'}]
