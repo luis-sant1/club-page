@@ -1,4 +1,5 @@
 import CarruselSalas from "./CarruselSalas";
+import CreateSaButton from "./CreateSaButton";
 
 export default function Salas() {
 
@@ -14,8 +15,10 @@ export default function Salas() {
                 <style>
                     @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
                 </style>
+                
             </div>
-
+            <CreateSaButton/>
+            
         </div>
     )
 }

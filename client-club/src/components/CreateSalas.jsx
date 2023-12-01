@@ -117,7 +117,7 @@ export default function CreateSalas() {
                         )
                     }
 
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Comodidad 1</label>
+                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Característica 1</label>
                     <div className='pt-1'>
                         <input type="text"
                              className='font-light w-full border border-solid border-black grid h-10 p-2 text-black'
@@ -135,7 +135,7 @@ export default function CreateSalas() {
                         }
                     </div>
 
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Comodidad 2</label>
+                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Característica 2</label>
                     <div className='pt-1'>
                         <input type="text"
 
@@ -154,7 +154,7 @@ export default function CreateSalas() {
                         }
                     </div>
 
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Comodidad 3</label>
+                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Característica 3</label>
                     <div className='pt-1'>
                         <input type="text"
                             className='font-light w-full border border-solid border-black grid h-10 p-2 text-black'
@@ -172,7 +172,7 @@ export default function CreateSalas() {
                         }
                     </div>
 
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Comodidad 4</label>
+                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Característica 4</label>
                     <div className='pt-1'>
                         <input type="text"
 

@@ -43,7 +43,7 @@ export default function SalasView() {
             <div className='lg:flex lg:pt-7'>
                 <div className="w-11/12 mr-auto ml-auto pt-7 border-b border-black lg:border-b-0 lg:w-8/12 lg:pt-1">
 
-                    <p className="text-black font-light text-lg pb-3 md:pb-6 lg:pl-8 dark:text-white">{data?.descripcion}</p>
+                    <p className="text-black font-light text-lg pb-3 md:pb-6 lg:pl-8 dark:text-white md:text-xl">{data?.descripcion}</p>
 
                     <div className="hidden md:hidden lg:flex lg:w-full lg:mr-0 lg:ml-0 ">
                         <img src="https://www.hostalrestauranteeltrillero.es/images/2017/06/28/sala-fiestas-alcaniz-el-trillero.jpg" alt="Imagen de la habitación" className="w-full h-96 pb-3 md:h-full lg:pb-8" />
