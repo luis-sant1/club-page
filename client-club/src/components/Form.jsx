@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form'
 import { formReq } from '../api/requests'
 import { useState } from 'react'
-import Swal from 'sweetalert2'
-import 'sweetalert2/src/sweetalert2.scss'
+// import Swal from 'sweetalert2'
+// import 'sweetalert2/src/sweetalert2.scss'
 import { useAuth } from './context/AuthContext'
 import { useNavigate, useParams } from 'react-router-dom'
 export default function Formulario() {

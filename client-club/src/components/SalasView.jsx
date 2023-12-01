@@ -31,7 +31,7 @@ export default function SalasView() {
                 src="https://www.hostalrestauranteeltrillero.es/images/2017/06/28/sala-fiestas-alcaniz-el-trillero.jpg" alt="Imagen de la habitación" />
                 <div className="absolute z-5 m-auto left-0 right-0  text-white flex self-end items-end w-full pb-10" >
                     <div className="flex justify-center w-1/2">
-                        <h2  className="text-4xl font-extralight flex  lg:text-5xl">{data?.nombre}</h2>
+                        <h2  className="text-4xl pl-1 font-extralight flex  lg:text-5xl">{data?.nombre}</h2>
                     </div>
                     <div className="flex justify-center w-1/2 pt-5">
                         <p className="font-extralight text-3xl lg:text-4xl">{data.price}$</p>
@@ -49,7 +49,7 @@ export default function SalasView() {
                         <img src="https://www.hostalrestauranteeltrillero.es/images/2017/06/28/sala-fiestas-alcaniz-el-trillero.jpg" alt="Imagen de la habitación" className="w-full h-96 pb-3 md:h-full lg:pb-8" />
                     </div>
                 </div>
-                <div className="text-black pt-3 w-11/12 mr-auto ml-auto border-y border-black md:pt-6 lg:pl-14 lg:w-3/12 lg:h-64 dark:text-white">
+                <div className="text-black pt-3 w-11/12 mr-auto ml-auto border-y border-black md:pt-6 lg:pl-14 lg:w-3/12 lg:h-80 dark:text-white">
                         <h1 className="text-3xl font-light pb-5 lg:text-4xl">Caracteristica</h1>
                         <ul className="list-disc pl-10 pb-3 md:pb-6">
                             <li className="font-light text-lg lg:text-xl">Capacidad máxima {data?.max} personas.</li>
