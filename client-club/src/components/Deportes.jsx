@@ -1,3 +1,4 @@
+import ButtonDeport from "./ButtonDeport";
 import CarruselDeport from "./CarruselDeport";
 
 export default function Deportes() {
@@ -14,6 +15,7 @@ export default function Deportes() {
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
         </style>
+        <ButtonDeport/>
     </div>
 
     )

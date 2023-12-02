@@ -1,3 +1,4 @@
+import ButtonEvent from "./ButtonEven";
 import CarruselEventos from "./CarruselEventos";
 
 export default function Eventos() {
@@ -13,6 +14,7 @@ export default function Eventos() {
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
         </style>
+        <ButtonEvent/>
     </div>
     )
 }

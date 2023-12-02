@@ -9,9 +9,10 @@ export default function Events(props) {
                 <h2 className="text-2xl p-2 font-light text-white w-full group">{props.name}</h2>
                 <p className="text-white font-light pl-2 pb-2 pr-2 hidden top-12 left-0 group-hover:flex">{props.description}<span className="font-bold"></span></p>
                 <div className="w-[60px] flex justify-center 	">
-                    <p  target="_blank"
+                    <button  target="_blank"
+                        onClick={(e) => props.openDetail(e, props.data)}
                         className="width-[50]"><span className="text-lg relative after:bg-white after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transitiz on-all after:duration-300 cursor-pointer hidden group-hover:flex ">Ver mas</span>
-                    </p>
+                    </button>
                 </div>
             </div>
 

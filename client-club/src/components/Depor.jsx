@@ -1,3 +1,5 @@
+import ButtonEditDe from "./ButtonEditDe";
+
 export default function Depor(props) {
     return(
     <div className="w-full h-auto">
@@ -16,7 +18,7 @@ export default function Depor(props) {
                     <li className="text-black font-light pl-2 pr-2 top-12 left-0 pb-2">{props.description}</li>
                     <li className="text-black font-light pl-2 pr-2 top-12 left-0 pb-2">{props.description}</li>
                 </ul>
-
+                <ButtonEditDe/>
             </div>
         </div>
 
@@ -31,7 +33,7 @@ export default function Depor(props) {
                     <li className="text-black font-light pl-2 pr-2 top-12 left-0 pb-2">{props.description}</li>
                     <li className="text-black font-light pl-2 pr-2 top-12 left-0 pb-2">{props.description}</li>
                 </ul>
-
+                <ButtonEditDe/>
             </div>
         </div>
 

@@ -4,7 +4,7 @@ export default function DataRestaurant() {
     const data = [
         {
             "type": "Restaurant 1",
-            "promo": "Restaurant espacializado en mariscos",
+            "promo": "Restaurant espacializado en mariscos, cuenta con mesas desde para 1 hasta para 8 personas.",
             "link": "",
             "img": "https://www.hotelabelux.com/themes/demo/assets/images/triple.jpg"
         },

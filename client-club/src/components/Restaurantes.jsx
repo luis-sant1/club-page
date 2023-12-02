@@ -1,3 +1,4 @@
+import ButtonRest from "./ButtonRest";
 import DataRestaurant from "./DataRestaurant";
 
 export default function Restaurantes() {
@@ -14,6 +15,7 @@ export default function Restaurantes() {
                 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
             </style>
         </div>
+        <ButtonRest/>
 
     </div>
     )
