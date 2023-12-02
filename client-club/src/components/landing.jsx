@@ -34,10 +34,6 @@ export default function Landing() {
     return(
         <div>
             {/* El modal */}
-            <Modal isOpen={isOpenAlert} onClose={closeAlert}> {/* VENTANA EMERGENTE */}
-                <ImgMenu dataImg={dataImg} funUp={funUp} /> {/* dataDetail, contenido del reques, funUp, función heredada. */}
-                <DetailsEvent dataEven={dataEven} funUp={funUp} />
-            </Modal>
             
             <Home/>
             <Deportes/>

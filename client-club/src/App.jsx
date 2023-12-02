@@ -18,13 +18,13 @@ function App() {
 
   // Funcion que se necesita para el modal
 
-  const toPageUp=(page, id, data)=>e=>{ // Función que cambia de vista (editar)
-    e.preventDefault()
-    window.history.pushState(null,"Create",`/${page}/${id}`) // Crea una pagina con el estado page y el id. 
-    setPage(page) // Setea estado
-    setID(id) // Guarda id
-    setContent(data) // Guarda data del fetch
-  }
+  // const toPageUp=(page, id, data)=>e=>{ // Función que cambia de vista (editar)
+  //   e.preventDefault()
+  //   window.history.pushState(null,"Create",`/${page}/${id}`) // Crea una pagina con el estado page y el id. 
+  //   setPage(page) // Setea estado
+  //   setID(id) // Guarda id
+  //   setContent(data) // Guarda data del fetch
+  // }
 
   return (
     <BrowserRouter>
@@ -33,7 +33,6 @@ function App() {
       
         <NavBar />
         <Routes>
-      
           <Route path="/*" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/salasview/:id" element={<SalasView />} />

@@ -2,6 +2,8 @@
 
 // import { Link } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+
 export default function ButtonEditDe() {
 
     return(
@@ -12,6 +14,9 @@ export default function ButtonEditDe() {
                 </div>
                 <div className=' grid justify-items-center  pr-1 md:pr-0 lg:w-1/2'>
                     <button type="" className='font-light bg-[rgba(95,111,82,1)] w-20 h-6 text-white text-base md:ml-1'>Eliminar</button>
+                </div>
+                <div className=' grid justify-items-center  pr-1 md:pr-0 lg:w-1/2'>
+                    <Link to= '/form/id' type="" className='font-light bg-[rgba(95,111,82,1)] w-20 h-6 text-white text-base md:ml-1'>Reservar</Link>
                 </div>
             </div>
             <style>

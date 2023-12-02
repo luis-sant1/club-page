@@ -15,6 +15,75 @@ const getALl = async (req, res) => {
     }
 }
 
+const insertMany = async (req,res) => {
+    try {
+        const newSport = new sportSchema({
+            name: "Cancha de Futbol",
+            roofType: "Sin techo",
+            floorType: "Grama sintética",
+            mts2: "500",
+            price: "",
+            img: {
+                "public_id": "",
+                "secure_url": "https://www.sportwelt.cl/wp-content/uploads/2022/12/CANCHAS-DE-FUTBOL-SINTETICO-EN-CLUB-PALESTINO-2.jpg"
+            },
+        })
+        const newSport1 = new sportSchema({
+            name: "Cancha de Basquetbol",
+            roofType: "Techado",
+            floorType: "Cancha de tabloncillo",
+            mts2: "400",
+            price: "",
+            img: {
+                "public_id": "",
+                "secure_url": "https://thumbs.dreamstime.com/z/las-canchas-de-baloncesto-del-lake-nona-club-fitness-center-en-orlando-florida-fl-usa-july-225454169.jpg?w=992"
+            },
+        })
+        const newSport2 = new sportSchema({
+            name: "Cancha de Tenis",
+            roofType: "Sin techo",
+            floorType: "Cancha de cemento",
+            mts2: "195.5",
+            price: "",
+            img: {
+                "public_id": "",
+                "secure_url": "https://static.wixstatic.com/media/c2ad68_524d6ed13093402a97adc97df509a1f6~mv2.jpg/v1/fill/w_917,h_575,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/_GRA3142_edited.jpg"
+            },
+        })
+        const newSport3= new sportSchema({
+            name: "Cancha de Bolas Criollas",
+            roofType: "Techado",
+            floorType: "Cancha de tierra",
+            mts2: "600",
+            price: "",
+            img: {
+                "public_id": "",
+                "secure_url": "https://hermandadgallega.net/img/galerias/8e1_DSC_1857.jpg"
+            },
+        })
+        const newSport4 = new sportSchema({
+            name: "Piscina",
+            roofType: "Sin techo",
+            floorType: "",
+            mts2: "32",
+            price: "",
+            img: {
+                "public_id": "",
+                "secure_url": "https://clubloscortijos.com/site/wp-content/uploads/2020/09/Piscina-semiolímpica-toma-aerea-1.jpg?189db0&189db0"
+            },
+        })
+        await newSport.save()
+        await newSport1.save()
+        await newSport2.save()
+        await newSport3.save()
+        await newSport4.save()
+    } catch (error) {
+        return res.status(500).json({
+            error:error
+        })
+    }
+}
+
 const create = async (req, res) => {
     try {
         console.log("this is req.fil")
