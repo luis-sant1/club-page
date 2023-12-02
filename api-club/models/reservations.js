@@ -24,6 +24,14 @@ const Reservation = new Schema ({
         required: true,
         // select : false
     },
+    entryHour: {
+        type: String,
+        required: true
+    },
+    exitHour: {
+        type: String,
+        required: true
+    },
     phone: {
         type: Number,
         required: true

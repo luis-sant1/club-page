@@ -47,9 +47,9 @@ const validateReservation = [
             const newEntryDateInput = moment(value).format("YYYY-MM-DD")
             const newExitDateDb = moment(reserExit).format("YYYY-MM-DD")
             const newEntryDateDb = moment(reserEntry).format("YYYY-MM-DD")
-            if (newEntryDateInput >= newEntryDateDb && newEntryDateInput <= newExitDateDb) {
+            if (newEntryDateInput >= newEntryDateDb || newEntryDateInput <= newExitDateDb) {
                 return Promise.reject('Fecha en reserva')
-            } else if (newExitDateInput >= newEntryDateDb && newExitDateInput <= newExitDateDb) {
+            } else if (newExitDateInput >= newEntryDateDb || newExitDateInput <= newExitDateDb) {
                 return Promise.reject('Fecha en reserva')
             }
             return true
@@ -75,7 +75,35 @@ const validateReservation = [
             }
 
             return true
-        }),
+        }),    
+    body('entryHour')
+    .exists()
+    .notEmpty()
+    .custom(async (entryHour, {req}) => {
+        const {_id} = req.params
+        const {exitHour} = req.body
+        const reservation = await reservations.find({
+            salon : _id
+        })
+        let entryHourDb;
+        let exitHourDb;
+        reservation?.map(x => {
+            entryHourDb = x.entryHour
+            exitHourDb = x.exitHour
+        })
+        console.log(entryHourDb)
+        console.log(exitHourDb)
+
+        if(entryHour >= entryHourDb || exitHour <= exitHourDb){
+            return Promise.reject("Hora de entrada en reserva hasta las:" + exitHourDb )
+        }  else if (exitHour >= entryHourDb || exitHour <= exitHourDb) {
+            return Promise.reject('Hora en reserva')
+        }
+        return true
+    }),
+    body('exitHour')
+    .exists()
+    .notEmpty(),
     body('phone')
         .exists()
         .withMessage('Campo Obligatorio.')

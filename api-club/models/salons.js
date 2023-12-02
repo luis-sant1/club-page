@@ -17,8 +17,8 @@ const salonModel = new Schema({
       type: String,
    },
    site: {
-      type: Array,
-      default: []
+      type: ['Interior', 'Exterior'],
+      default: ['Interior']
    },
    max: {
       type: String

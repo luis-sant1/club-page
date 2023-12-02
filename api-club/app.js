@@ -5,6 +5,7 @@ const reservationsRoutes = require('./Routes/reservationsRoutes')
 const reviewRouter = require('./Routes/reviewRoutes')
 const roomsRouter = require('./Routes/roomsRoutes')
 const salonsRouter = require('./Routes/salonsRoutes')
+const sportsRouter = require('./Routes/sportsRoutes')
 const morgan = require('morgan') // See https request
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
@@ -41,5 +42,6 @@ app.use('/reservations', reservationsRoutes)
 app.use('/room', roomsRouter)
 app.use('/reviews', reviewRouter)
 app.use('/salons', salonsRouter)
+app.use('/sports', sportsRouter)
 
 module.exports = app;

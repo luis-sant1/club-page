@@ -48,7 +48,7 @@ const createReservation = async (req, res) => {
                 console.log("Email sent successfully");
             }
         })
-        const { name, lastName, email, entryDate, exitDate, phone, salon, check } = body
+        const { name, lastName, email, entryDate, exitDate, phone, salon, check, entryHour, exitHour } = body
         const newExitDateInput = moment(exitDate).format("YYYY-MM-DD")
         const newEntryDateInput = moment(entryDate).format("YYYY-MM-DD")
         const newReservation = new Reservation({
@@ -57,14 +57,16 @@ const createReservation = async (req, res) => {
             email,
             entryDate: newEntryDateInput,
             exitDate: newExitDateInput,
+            entryHour, 
+            exitHour,
             phone,
             check,
             salon: salonName._id
         })
         console.log(newReservation)
-        const reservationSaved = await newReservation.save()
-        salonName.reservations = salonName.reservations.concat(reservationSaved._id)
-        await salonName.save()
+        // const reservationSaved = await newReservation.save()
+        // salonName.reservations = salonName.reservations.concat(reservationSaved._id)
+        // await salonName.save()
         res.status(200).json({
             reservation: newReservation
         })
