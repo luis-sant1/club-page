@@ -22,61 +22,69 @@ const insertMany = async (req,res) => {
             roofType: "Sin techo",
             floorType: "Grama sintética",
             mts2: "500",
-            price: "",
+            price: "20",
             img: {
                 "public_id": "",
                 "secure_url": "https://www.sportwelt.cl/wp-content/uploads/2022/12/CANCHAS-DE-FUTBOL-SINTETICO-EN-CLUB-PALESTINO-2.jpg"
             },
+            avaible: "Todo el día"
         })
         const newSport1 = new sportSchema({
             name: "Cancha de Basquetbol",
             roofType: "Techado",
             floorType: "Cancha de tabloncillo",
             mts2: "400",
-            price: "",
+            price: "20",
             img: {
                 "public_id": "",
                 "secure_url": "https://thumbs.dreamstime.com/z/las-canchas-de-baloncesto-del-lake-nona-club-fitness-center-en-orlando-florida-fl-usa-july-225454169.jpg?w=992"
             },
+            avaible: "Todo el día"
         })
         const newSport2 = new sportSchema({
             name: "Cancha de Tenis",
             roofType: "Sin techo",
             floorType: "Cancha de cemento",
             mts2: "195.5",
-            price: "",
+            price: "20",
             img: {
                 "public_id": "",
                 "secure_url": "https://static.wixstatic.com/media/c2ad68_524d6ed13093402a97adc97df509a1f6~mv2.jpg/v1/fill/w_917,h_575,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/_GRA3142_edited.jpg"
             },
+            avaible: "Todo el día"
         })
         const newSport3= new sportSchema({
             name: "Cancha de Bolas Criollas",
             roofType: "Techado",
             floorType: "Cancha de tierra",
             mts2: "600",
-            price: "",
+            price: "25",
             img: {
                 "public_id": "",
                 "secure_url": "https://hermandadgallega.net/img/galerias/8e1_DSC_1857.jpg"
             },
+            avaible: "Todo el día"
         })
         const newSport4 = new sportSchema({
             name: "Piscina",
             roofType: "Sin techo",
             floorType: "",
             mts2: "32",
-            price: "",
+            price: "35",
             img: {
                 "public_id": "",
                 "secure_url": "https://clubloscortijos.com/site/wp-content/uploads/2020/09/Piscina-semiolímpica-toma-aerea-1.jpg?189db0&189db0"
             },
+            avaible: "Desde las 10h hasta las 16h"
         })
         await newSport.save()
         await newSport1.save()
         await newSport2.save()
         await newSport3.save()
         await newSport4.save()
+        return res.status(200).json({
+            resutl: "Data has been created succesfully"
+        })
     } catch (error) {
         return res.status(500).json({
             error:error
@@ -98,6 +106,7 @@ const create = async (req, res) => {
             mts2,
             price,
             img,
+            avaible
         } = req.body;
 
         let item = await sportSchema.findOne({ name });
@@ -111,6 +120,7 @@ const create = async (req, res) => {
             mts2,
             price,
             img,
+            avaible
         });
         console.log(item);
         if (path) {
@@ -139,10 +149,13 @@ const edit = async (req, res) => {
         if (path !== undefined) {
 
             let item = await sportSchema.findById(_id)
-            await deleteImage(item.imagen.public_id)
+            console.log('1')
+            await deleteImage(item.img.public_id)
+            console.log('2')
+
             const result = await uploadImageEvent(path)
             await fs.unlink(path)
-            update.imagen = { public_id: result.public_id, secure_url: result.secure_url }
+            update.img = { public_id: result.public_id, secure_url: result.secure_url }
             item = await sportSchema.findByIdAndUpdate(_id, update, { new: true })
 
             return res.status(200).json({ item: "The item has been edited" })
@@ -151,6 +164,7 @@ const edit = async (req, res) => {
         return res.status(200).json({ item: "The item has been edited" })
 
     } catch (error) {
+        console.log(error)
         return res.status(500).json({ messageError: error.message });
     }
 }
@@ -169,4 +183,4 @@ const deleteOne = async(req, res) => {
     }
 }
 
-module.exports = { getALl , create, edit, deleteOne}
+module.exports = { getALl , create, edit, deleteOne, insertMany}

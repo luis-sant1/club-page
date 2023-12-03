@@ -1,6 +1,7 @@
 const reservations = require('../models/reservations')
 const Reservation = require('../models/reservations')
 const salonModel = require('../models/salons')
+const sportSchema = require('../models/sports')
 const { validateReservation } = require('../validators/reservations')
 const nodeMailer = require('nodemailer')
 const myEmail = process.env.EMAIL
@@ -8,10 +9,23 @@ const passwordEmail = process.env.PASS
 const moment = require('moment')
 const createReservation = async (req, res) => {
     try {
+        console.log("1")
         const { body } = req
+        const { name, lastName, email, entryDate, exitDate, phone, check, entryHour, exitHour } = body
         const { _id } = req.params
-        const salonName = await salonModel.findById(_id)
-
+        let newReservation;
+        let salonId;
+        let sportId
+        console.log("1")
+        let item = await salonModel.findById(_id)
+        console.log("2")
+        if(item){
+            salonId = item._id
+        }else if (!item) {
+            item = await sportSchema.findById(_id)
+            sportId = item._id
+        }
+        console.log("3")
         let config = nodeMailer.createTransport({
             host: 'smtp.gmail.com',
             post: 587,
@@ -34,7 +48,7 @@ const createReservation = async (req, res) => {
             Fecha de entrada: ${req.body.entryDate.toString()}
             Fecha de salida: ${req.body.exitDate.toString()}
             Número de teléfono: ${req.body.phone.toString()}
-            Salón reservado: ${salonName.name}
+            Salón reservado: ${item.name}
             `
         }
 
@@ -48,25 +62,44 @@ const createReservation = async (req, res) => {
                 console.log("Email sent successfully");
             }
         })
-        const { name, lastName, email, entryDate, exitDate, phone, salon, check, entryHour, exitHour } = body
+        
         const newExitDateInput = moment(exitDate).format("YYYY-MM-DD")
         const newEntryDateInput = moment(entryDate).format("YYYY-MM-DD")
-        const newReservation = new Reservation({
-            name,
-            lastName,
-            email,
-            entryDate: newEntryDateInput,
-            exitDate: newExitDateInput,
-            entryHour, 
-            exitHour,
-            phone,
-            check,
-            salon: salonName._id
-        })
+        console.log('4')
+        if(salonId){
+            newReservation = new Reservation({
+                name,
+                lastName,
+                email,
+                entryDate: newEntryDateInput,
+                exitDate: newExitDateInput,
+                entryHour,
+                exitHour,
+                phone,
+                check,
+                salon: salonId
+            })
+        }else if(sportId){
+            newReservation = new Reservation({
+                name,
+                lastName,
+                email,
+                entryDate: newEntryDateInput,
+                exitDate: newExitDateInput,
+                entryHour,
+                exitHour,
+                phone,
+                check,
+                sport: sportId
+            })
+        } else if ( !sportId && !salonId){
+            return res.status(500).json({ error: "Hubo un error al asignar reservaciión" })
+        }
+        console.log('5')
         console.log(newReservation)
         // const reservationSaved = await newReservation.save()
-        // salonName.reservations = salonName.reservations.concat(reservationSaved._id)
-        // await salonName.save()
+        // item.reservations = item.reservations.concat(reservationSaved._id)
+        // await item.save()
         res.status(200).json({
             reservation: newReservation
         })

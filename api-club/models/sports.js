@@ -23,6 +23,9 @@ const sportSchema = new Schema({
         public_id: String,
         secure_url: String
      },
+    avaible: {
+        type: String
+     },
     reservations: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Reservations'

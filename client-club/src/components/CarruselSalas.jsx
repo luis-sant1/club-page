@@ -26,7 +26,7 @@ export default function CarruselSalas (){
         
     };
     const { salons } =useAuth()
-    console.log(salons)
+    
 
     return(
         

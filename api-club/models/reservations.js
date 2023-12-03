@@ -42,8 +42,11 @@ const Reservation = new Schema ({
     },
     salon: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Salons",
-        required: true
+        ref: "Salons"
+    }],
+    sport: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Sports"
     }]
 },
 {

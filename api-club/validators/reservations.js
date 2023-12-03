@@ -1,4 +1,4 @@
-const { body, param,  validationResult } = require('express-validator');
+const { body, param, validationResult } = require('express-validator');
 const reservations = require('../models/reservations')
 const moment = require('moment')
 const validateReservation = [
@@ -34,9 +34,14 @@ const validateReservation = [
         .custom(async (value, { req }) => {
             const { _id } = req.params
             const { exitDate } = req.body
-            const reservation = await reservations.find({
+            let reservation = await reservations.find({
                 salon: _id
             })
+            if (!reservation) {
+                reservation = await reservations.find({
+                    sport: _id
+                })
+            }
             let reserExit;
             let reserEntry;
             reservation?.map((x) => {
@@ -47,9 +52,9 @@ const validateReservation = [
             const newEntryDateInput = moment(value).format("YYYY-MM-DD")
             const newExitDateDb = moment(reserExit).format("YYYY-MM-DD")
             const newEntryDateDb = moment(reserEntry).format("YYYY-MM-DD")
-            if (newEntryDateInput >= newEntryDateDb || newEntryDateInput <= newExitDateDb) {
+            if (newEntryDateInput >= newEntryDateDb && newEntryDateInput <= newExitDateDb) {
                 return Promise.reject('Fecha en reserva')
-            } else if (newExitDateInput >= newEntryDateDb || newExitDateInput <= newExitDateDb) {
+            } else if (newExitDateInput >= newEntryDateDb && newExitDateInput <= newExitDateDb) {
                 return Promise.reject('Fecha en reserva')
             }
             return true
@@ -60,50 +65,79 @@ const validateReservation = [
         .isDate()
         .custom((date, { req }) => {
             const newDate = new Date() // nueva fecha
+            console.log(newDate)
+
             const dOTD = (d) => { // refactorizamos esa fecaha
                 return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate()
             }
-
 
             if (req.body.exitDate <= req.body.entryDate) { // camaparamos fechas en los inputs
                 throw new Error(
                     '¡Fecha de salida debe ser mayor a fecha de entrada!')
             }
-            if (req.body.entryDate < dOTD(newDate)) { // Comapramos fecha de input con acutal
+            if (req.body.entryDate < newDate) { // Comapramos fecha de input con acutal
                 throw new Error(
                     '¡Fecha de entrada no valida! Menor a fecha actual.')
             }
 
             return true
-        }),    
+        }),
     body('entryHour')
-    .exists()
-    .notEmpty()
-    .custom(async (entryHour, {req}) => {
-        const {_id} = req.params
-        const {exitHour} = req.body
-        const reservation = await reservations.find({
-            salon : _id
-        })
-        let entryHourDb;
-        let exitHourDb;
-        reservation?.map(x => {
-            entryHourDb = x.entryHour
-            exitHourDb = x.exitHour
-        })
-        console.log(entryHourDb)
-        console.log(exitHourDb)
+        .exists()
+        .notEmpty()
+        .custom(async (entryHour, { req }) => {
+            const { _id } = req.params
+            const { exitDate } = req.body
+            const { entryDate } = req.body
+            const { exitHour } = req.body
+            let entryHourDb;
+            let exitHourDb;
+            
+            console.log(entryHourDb)
+            console.log(exitHourDb)
 
-        if(entryHour >= entryHourDb || exitHour <= exitHourDb){
-            return Promise.reject("Hora de entrada en reserva hasta las:" + exitHourDb )
-        }  else if (exitHour >= entryHourDb || exitHour <= exitHourDb) {
-            return Promise.reject('Hora en reserva')
-        }
-        return true
-    }),
+            let reservation = await reservations.find({
+                salon: _id,
+            })
+            if (!reservation) {
+                reservation = await reservations.find({
+                    sport: _id
+                })
+            }
+            let reserExit;
+            let reserEntry;
+            reservation?.map((x) => {
+                reserExit = x.exitDate,
+                    reserEntry = x.entryDate
+            })
+
+            reservation?.map(x => {
+                entryHourDb = x.entryHour
+                exitHourDb = x.exitHour
+            })
+
+            const newExitDateInput = moment(exitDate).format("YYYY-MM-DD")
+            const newEntryDateInput = moment(entryDate).format("YYYY-MM-DD")
+            const newExitDateDb = moment(reserExit).format("YYYY-MM-DD")
+            const newEntryDateDb = moment(reserEntry).format("YYYY-MM-DD")
+
+            if (newEntryDateInput >= newEntryDateDb && newEntryDateInput <= newExitDateDb) {
+                if (entryHour >= entryHourDb || exitHour <= exitHourDb) {
+                    return Promise.reject("Hora de entrada en reserva desdelas "+ entryHourDb + " hasta las: " + exitHourDb)
+                }
+                return true
+            } else if (newExitDateInput >= newEntryDateDb && newExitDateInput <= newExitDateDb) {
+                if (entryHour >= entryHourDb || exitHour <= exitHourDb) {
+                    return Promise.reject("Hora de entrada en reserva desde las "+ entryHourDb + " hasta las: " + exitHourDb)
+                }
+                return true
+            }
+            return true
+        })
+        ,
     body('exitHour')
-    .exists()
-    .notEmpty(),
+        .exists()
+        .notEmpty(),
     body('phone')
         .exists()
         .withMessage('Campo Obligatorio.')
@@ -119,8 +153,8 @@ const validateReservation = [
         .notEmpty()
         .isMongoId(),
     body('check')
-    .exists()
-    .isBoolean(),
+        .exists()
+        .isBoolean(),
     (req, res, next) => {
         try {
             validationResult(req).throw() // Busca error
