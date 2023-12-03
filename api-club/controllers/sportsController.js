@@ -15,7 +15,7 @@ const getALl = async (req, res) => {
     }
 }
 
-const insertMany = async (req,res) => {
+const insertMany = async (req, res) => {
     try {
         const newSport = new sportSchema({
             name: "Cancha de Futbol",
@@ -53,7 +53,7 @@ const insertMany = async (req,res) => {
             },
             avaible: "Todo el día"
         })
-        const newSport3= new sportSchema({
+        const newSport3 = new sportSchema({
             name: "Cancha de Bolas Criollas",
             roofType: "Techado",
             floorType: "Cancha de tierra",
@@ -87,7 +87,7 @@ const insertMany = async (req,res) => {
         })
     } catch (error) {
         return res.status(500).json({
-            error:error
+            error: error
         })
     }
 }
@@ -169,18 +169,18 @@ const edit = async (req, res) => {
     }
 }
 
-const deleteOne = async(req, res) => {
+const deleteOne = async (req, res) => {
     try {
-        const {_id} = req.params
+        const { _id } = req.params
         const result = await sportSchema.findByIdAndDelete(_id)
         return res.status(200).json({
             message: "Item has been romeved"
         })
     } catch (error) {
         return res.status(500).json({
-            error:error
+            error: error
         })
     }
 }
 
-module.exports = { getALl , create, edit, deleteOne, insertMany}
+module.exports = { getALl, create, edit, deleteOne, insertMany }
