@@ -8,8 +8,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "vite-plugin-pwa": "^0.17.2"
-  }
+  "license": "ISC"
 }
