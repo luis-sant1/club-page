@@ -46,7 +46,7 @@ export default function CreateSalas() {
             <div className='mr-auto ml-auto w-11/12 md:w-7/12 lg:w-3/12 '>
 
                 <form enctype="multipart/form-data" className='grid grid-cols-1 justify-center h-full ' method="post" onSubmit={onSubmit}>
-                    <label htmlFor=""className='font-light pt-10 mt-[40px] dark:text-white text-black'>Titulo de la habitación</label>
+                    <label htmlFor=""className='font-light pt-10 mt-[40px] dark:text-white text-black'>Titulo de la Sala</label>
                     <div className='pt-1'>
                         <input type="text"
                              className='font-light w-full border border-solid border-black grid h-10 p-2 text-black' 
@@ -62,23 +62,6 @@ export default function CreateSalas() {
                             </div>
                         )
                     }
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Oferta especial de la habitación</label>
-                    <div className='pt-1'>
-                        <input type="text"
-                             className='font-light w-full border border-solid border-black grid h-10 p-2 text-black' 
-                            {...register('promo', { required: true, minLength: 4, maxLength: 90, pattern: /^[a-zA-ZÀ-ÿ\s]{4,90}$/ })} />
-
-                        {
-                            errors.promo && (
-                                <div className='flex flex-nowrap mt-2'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                                    </svg>
-                                    <p className='text-red-500 mx-1'>Campo Obligatorio.</p>
-                                </div>
-                            )
-                        }
-                    </div>
 
 
                     <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Descripción</label>
@@ -192,7 +175,7 @@ export default function CreateSalas() {
                     </div>
 
 
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Imagen de la habitación</label>
+                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Imagen de la Sala</label>
                     <div className="pt-2">
 
 

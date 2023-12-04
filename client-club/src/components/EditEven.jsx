@@ -65,10 +65,10 @@ export default function EditEven() {
                     }
                     
                     
-                    {/* <div className='pt-1'>
+                    <div className='pt-1'>
                         <div className='grid grid-cols-2 pt-1 '>
-                            <label htmlFor="" className='font-light dark:text-white text-black'>Fecha y hora de entrada</label>
-                            <label htmlFor="" className='font-light dark:text-white text-black'>Fecha y hora de salida</label>
+                            <label htmlFor="" className='font-light dark:text-white text-black'>Fecha de entrada</label>
+                            <label htmlFor="" className='font-light dark:text-white text-black'>Fecha de salida</label>
                         </div>
 
                         <div className='grid grid-cols-2 '>
@@ -89,7 +89,33 @@ export default function EditEven() {
                                 </div>
                             ) : ""
                         }
-                    </div> */}
+                    </div>
+
+                    <div className='pt-1'>
+                        <div className='grid grid-cols-2 pt-1 '>
+                            <label htmlFor="" className='font-light dark:text-white text-black'>Hora de entrada</label>
+                            <label htmlFor="" className='font-light dark:text-white text-black'>Hora de salida</label>
+                        </div>
+
+                        <div className='grid grid-cols-2 '>
+                            <input type="time"
+                                {...register('entryDate', { required: true })}
+                                className='text-black font-light h-10 w-8/12 border border-solid border-black p-2' />
+                            <input type="time"
+                                {...register('exitDate', { required: true })}
+                                className='text-black font-light h-10 w-8/12 border border-solid border-black p-2' />
+                        </div>
+                        {
+                            errors.entryDate || errors.exitDate ? (
+                                <div className='flex flex-nowrap mt-2'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                                    </svg>
+                                    <p className='text-red-500 mx-1'>Campo Obligatorio.</p>
+                                </div>
+                            ) : ""
+                        }
+                    </div>
 
                     <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Descripción del Evento</label>
                     <div className='pt-1'>
@@ -126,41 +152,6 @@ export default function EditEven() {
                             )
                         }
                     </div>
-
-
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Fecha del evento</label>
-                    <div className='pt-1'>
-                        <input type="text"
-                            {...register('phone', { required: true, minLength: 10, maxLength: 10, })}
-                            className='text-black font-light w-full border border-solid border-black grid h-10 p-2' />
-                    </div>
-                    {
-                        errors.phone && (
-                            <div className='flex flex-nowrap mt-2'>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                                </svg>
-                                <p className='text-red-500 mx-1'>Campo Obligatorio.</p>
-                            </div>
-                        )
-                    }
-
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Hora del evento</label>
-                    <div className='pt-1'>
-                        <input type="text"
-                            {...register('time', { required: true, minLength: 7, maxLength: 8, })}
-                            className='text-black font-light w-full border border-solid border-black grid h-10 p-2' />
-                    </div>
-                    {
-                        errors.time && (
-                            <div className='flex flex-nowrap mt-2'>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                                </svg>
-                                <p className='text-red-500 mx-1'>Campo Obligatorio.</p>
-                            </div>
-                        )
-                    }
 
                     <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Edades de admisión</label>
                     <div className='pt-1'>

@@ -80,24 +80,26 @@ export default function CreateDeport() {
                         }
                     </div>
 
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Característica 2</label>
+                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Techado o al aire libre (Característica 2)</label>
                     <div className='pt-1'>
-                        <input type="text"
-
-                             className='font-light w-full border border-solid border-black grid h-10 p-2 text-black'
-                            {...register('modcon2', { required: true, minLength: 4, maxLength: 90, pattern: /^[a-zA-ZÀ-ÿ\s]{4,90}$/ })} />
-
-                        {
-                            errors.modcons && (
-                                <div className='flex flex-nowrap mt-2'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                                    </svg>
-                                    <p className='text-red-500 mx-1'>Campo Obligatorio.</p>
-                                </div>
-                            )
-                        }
+                        <select
+                            {...register('room', { required: true })}
+                            className='font-light h-10 w-full border border-solid border-black p-2 text-black'>
+                            <option value="" className='font-light'>Seleccionar:</option>
+                            <option value="techado" className='font-light'>Techado</option>
+                            <option value="libre" className='font-light'>Al aire libre</option>
+                        </select>
                     </div>
+                    {
+                        errors.room && (
+                            <div className='flex flex-nowrap mt-2'>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                                </svg>
+                                <p className='text-red-500 mx-1'>Campo Obligatorio.</p>
+                            </div>
+                        )
+                    }
 
                     <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Característica 3</label>
                     <div className='pt-1'>
