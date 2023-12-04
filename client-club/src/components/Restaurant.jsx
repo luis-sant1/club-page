@@ -12,7 +12,7 @@ export default function Restaurant(props) {
                 <div className="grid place-content-center pl-0 bg-[rgba(230,230,230,1)] pr-2 md:mr-10 ">
                     <div className="pl-2" >
                         <h2 className="text-xl font-light border-b border-black">{props.name}</h2>
-                        <p className="font-light pt-5 md:pt-7 md:pb-3">{props.description}</p>
+                        <p className="font-light text-sm md:text-base pt-5 md:pt-7 md:pb-3">{props.description}</p>
                         <div className="flex justify-center">
                         <button 
                         onClick={()=> {setShowModal(true)}}
