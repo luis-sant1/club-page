@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Restaurant from "./Restaurant"
 import { getAllRest } from "../api/requests"
 export default function DataRestaurant() {
+    
     const [data, setData] = useState([])
     useEffect(()=> {
         const fetchRest = async () => {
@@ -22,7 +23,7 @@ export default function DataRestaurant() {
                 {
                     data?.map((x, i) => {
                         return ( 
-                            <Restaurant  key={i} name={x.name} description={x.description} img={x.imagen}/>
+                            <Restaurant key={i} name={x.name} description={x.description} img={x.imagen}/>
                         )
                     })
                 }

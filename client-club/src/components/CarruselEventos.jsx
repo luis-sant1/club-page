@@ -3,13 +3,15 @@ import 'react-multi-carousel/lib/styles.css';
 import Events from './Events';
 import { useState, useEffect } from 'react';
 import { getAllEvents } from '../api/requests';
+import { useAuth } from './context/AuthContext';
 export default function CarruselEventos() {
+    const { showModal } = useAuth()
     const [data, setData] = useState([])
 
-    useEffect(()=> {
-        const fetchEvents = async() =>{
+    useEffect(() => {
+        const fetchEvents = async () => {
             try {
-                const res = await getAllEvents() 
+                const res = await getAllEvents()
                 setData(res.data.events)
             } catch (error) {
                 console.log(error)
@@ -43,15 +45,18 @@ export default function CarruselEventos() {
         <div className='w-fulloverflow-hidden m-auto'>
 
             <Carousel
+                {
+                ...(showModal && { arrows: false })
+                }
                 responsive={responsive}>
                 {
                     data?.map((x, i) => {
                         return (
-                            <Events key={i} name={x.name} site={x.site} description={x.description} img={x.img} entryDate = {x.entryDate} exitDate = {x.exitDate} entryHour = {x.entryHour} exitHour = {x.exitHour} />
+                            <Events key={i} name={x.name} site={x.site} description={x.description} img={x.img} entryDate={x.entryDate} exitDate={x.exitDate} entryHour={x.entryHour} exitHour={x.exitHour} />
                         )
                     })
                 }
-                
+
             </Carousel>
         </div>
 

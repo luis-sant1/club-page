@@ -2,9 +2,8 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Salones from './Salones';
 import { useAuth } from './context/AuthContext';
-
-
-export default function CarruselSalas (){
+export default function CarruselSalas() {
+    const { showModal } = useAuth()
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -23,30 +22,33 @@ export default function CarruselSalas (){
             breakpoint: { max: 464, min: 0 },
             items: 1
         }
-        
+
     };
-    const { salons } =useAuth()
-    
+    const { salons } = useAuth()
 
-    return(
-        
-            <div className='w-full  m-auto pt-3 pb-3  '>
-                
-                <Carousel
-                    responsive={responsive}>
-                        {
-                            salons?.map((x, i) => {
-                                return ( 
-                                    <Salones  key={i} name={x.nombre} descripcion={x.descripcion} img={x.imagen} id = {x._id}
-                                    />
-                                )
-                            })
-                        }
-                        
-                        
-                </Carousel>
-            </div>
 
-            
+    return (
+
+        <div className='w-full  m-auto pt-3 pb-3  '>
+
+            <Carousel
+                {
+                ...(showModal && { arrows: false })
+                }
+                responsive={responsive}>
+                {
+                    salons?.map((x, i) => {
+                        return (
+                            <Salones key={i} name={x.nombre} descripcion={x.descripcion} img={x.imagen} id={x._id}
+                            />
+                        )
+                    })
+                }
+
+
+            </Carousel>
+        </div>
+
+
     )
 }

@@ -1,13 +1,11 @@
 import ButtonRest from "./ButtonRest";
 import DataRestaurant from "./DataRestaurant";
-
 export default function Restaurantes() {
     return(
         <div className="bg-white dark:bg-gray-900 dark:text-white text-black" id="rest">
         <h1 className='font-bold pl-14 text-[rgba(95,111,82,1)] text-4xl md:text-7xl md:pl-16 md:pb-0 lg:text-8xl lg:pl-20'>Restaurantes</h1>
         <div className='' >
             <div className="">
-                
                 <DataRestaurant />
             </div>
             

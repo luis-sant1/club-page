@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
     const [error, setError] = useState("")
     const [salons, setSalons] = useState([])
     const [loadData, setLoadData] = useState(null)
+    const [showModal, setShowModal] = useState(false)
     const signin = async (user) => {
         try {
             console.log(user)
@@ -126,7 +127,8 @@ export const AuthProvider = ({ children }) => {
             setUser, 
             error,
             salons,
-            setLoadData 
+            showModal, 
+            setShowModal 
         }}>
             {children}
         </AuthContext.Provider>
