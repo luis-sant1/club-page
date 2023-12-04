@@ -26,34 +26,19 @@ const { showModal } = useAuth()
     };
     const data = [
         {
-            "type": "Habitación matrimonial.",
-            "promo": "¡El mejor lugar para vacacionar! 5% de descuento.",
-            "link": "",
-            "img": "https://www.hotelabelux.com/themes/demo/assets/images/triple.jpg"
+            "img": "https://cccm.mx/wp-content/themes/CCCM/images/dynamic/campo.jpg"
         },
         {
-            "type": "Habitación para 3 personas.",
-            "promo": "¡El mejor lugar para vacacionar! 5% de descuento.",
-            "link": "",
-            "img": "https://images.hola.com/imagenes/decoracion/20230425230358/dormitorios-inspirados-en-habitaciones-hoteles-am/1-237-28/habitaciones-hotel-5a-a.jpg"
+            "img": "https://clubloscortijos.com/site/wp-content/uploads/2020/09/Piscina-semiol%C3%ADmpica-toma-lateral-aerea.jpg?189db0&189db0"
         },
         {
-            "type": "Habitación para 4 personas.",
-            "promo": "¡El mejor lugar para vacacionar! 10% de descuento.",
-            "link": "",
-            "img": "https://hotelhumberto.com.mx/img/site/vista-habitaciones/4-personas-2.jpg"
+            "img": "https://www.circuloecuestre.es/image/cache/catalog/correspondientes/america/el-salvador/san-salvador/club-campestre-cuscatlan/club-campestre-cuscatlan-1200x840.jpg"
         },
         {
-            "type": "Habitación para 5 personas.",
-            "promo": "¡El mejor lugar para vacacionar! 5% de descuento.",
-            "link": "",
-            "img": "https://bestlocationhotels.com/wp-content/uploads/2019/04/TRYP-by-Wyndham-Times-Square-South.jpg"
+            "img": "https://homesoftherich.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-16-at-1.04.32-PM.png"
         },
         {
-            "type": "Habitación para 6 personas.",
-            "promo": "¡El mejor lugar para vacacionar! 5% de descuento.",
-            "link": "",
-            "img": "https://es.hotellebayeux.com/usermedia/photo-636567303628543623-2.jpg?dummy=0&h=800"
+            "img": "https://images.adsttc.com/media/images/6027/27e3/f91c/8176/4b00/0347/large_jpg/8.jpg?1613178815"
         }
     ]
     return (
@@ -80,7 +65,7 @@ const { showModal } = useAuth()
                 <h2 className='logo font-semibold text-7xl text-[rgba(95,111,82,1)] pb-8 md:text-8xl lg:pb-12'>Canaima</h2>
 
                 <div className='lg:flex lg:justify-center'>
-                    <p className="font-light text-white md:text-2xl lg:w-6/12">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum, dolor quidem optio rerum error ipsam itaque dignissimos excepturi, aspernatur suscipit perspiciatis tenetur ipsa odit minus ex veritatis non praesentium nemo?</p>
+                    <p className="font-light text-white md:text-2xl lg:w-6/12">Ven y disfruta de nuestros servicios de primera calidad para pasar un día estupendo junto a tus amigos o seres queridos, ¿A qué esperas para conocernos?</p>
                 </div>
             </div>
         </div>
