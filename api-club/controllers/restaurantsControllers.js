@@ -145,7 +145,7 @@ const insertMany = async (req, res) => {
             name: "La Cabaña",
             description: "Un restaurante de comida tradicional, con una cabaña de madera y una chimenea. Disfruta de platos como el sancocho, el pabellón o el quesillo",
             imagen: [{
-                secure_url: "https://content.wepik.com/statics/29838533/preview-page0.jpg"
+                secure_url: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/restaurant-menu-with-pictures-template-design-7f0cd7b69fb7d71b01424522fa5f5b6b_screen.jpg?ts=1636982707"
             },
             {
                 secure_url: "https://img.freepik.com/foto-gratis/interior-restaurante_1127-3394.jpg?w=740&t=st=1701639769~exp=1701640369~hmac=2b1b65949b75ddb6832227d5904b7eec7255239cf726d69f42668c6424bcf902"
@@ -155,7 +155,7 @@ const insertMany = async (req, res) => {
             name: "Il Forno",
             description: "Un restaurante de comida italiana, con un horno de leña y una decoración rústica. Prueba platos como la pizza napolitana, la pasta carbonara o el cannoli.",
             imagen: [{
-                secure_url: "https://content.wepik.com/statics/29838533/preview-page0.jpg"
+                secure_url: "https://i.pinimg.com/736x/94/05/e0/9405e029f9196328b71947c99c2d2c8f.jpg"
             },
             {
                 secure_url: "https://www.guiarepsol.com/content/dam/repsol-guia/contenidos-imagenes/comer/top-de-gastronomia/los-restaurantes-mas-antiguos-de-espana/gr-cms-media-featured_images-none-759f762b-7965-41cd-a979-da49509e205d-1.jpg.transform/rp-rendition-md/image.jpg"
@@ -165,7 +165,7 @@ const insertMany = async (req, res) => {
             name: "Sakura",
             description: "Un restaurante de comida japonesa, con un ambiente zen y una carta variada. Saborea platos como el sushi, el ramen o el mochi.",
             imagen: [{
-                secure_url: "https://content.wepik.com/statics/29838533/preview-page0.jpg"
+                secure_url: "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/restaurant-menu-digital-display-design-template-5d2609decd85935bedd2a3a6d9a9982e_screen.jpg?ts=1637046477"
             },
             {
                 secure_url: "https://img.freepik.com/foto-gratis/camarero-feliz-sirviendo-comida-grupo-amigos-alegres-pub_637285-12525.jpg?w=740&t=st=1701640110~exp=1701640710~hmac=b76baf0eff536ca0563c2c65756108d519f5f127d5a33eebf76c83def62e50db"

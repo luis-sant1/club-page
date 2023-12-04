@@ -13,12 +13,13 @@ import Modal from "./components/Modal/Modal"
 import { useAuth } from "./components/context/AuthContext"
 function App() {
   const {showModal, setShowModal} = useAuth()
+  const closeModal = ()=> {
+    setShowModal({show: false, restaurant:{}})
+  }
   return (
     <BrowserRouter>
     {
-      showModal && <Modal onClose = {()=> {
-        setShowModal(false)
-      }}/>
+      showModal.show && <Modal {...showModal} onClose = {closeModal}/>
     }
       
       <ScrollToTop/>

@@ -1,6 +1,7 @@
 import { useAuth } from "./context/AuthContext"
 export default function Restaurant(props) {
     const {setShowModal} = useAuth()
+    const seeMenu = (restaurant) => setShowModal({show: true, restaurant:restaurant })
     return(
         <div className=" grid grid-cols-1 justify-items-center pb-10  ">
             <div className="grid grid-cols-2 w-full  md-pl-5 ">
@@ -15,7 +16,7 @@ export default function Restaurant(props) {
                         <p className="font-light text-sm md:text-base pt-5 md:pt-7 md:pb-3">{props.description}</p>
                         <div className="flex justify-center">
                         <button 
-                        onClick={()=> {setShowModal(true)}}
+                        onClick={()=> {seeMenu(props.rest)}}
                         className="text-center"><span className=" text-lg relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer">Ver menú</span>
                         </button>
                         </div>

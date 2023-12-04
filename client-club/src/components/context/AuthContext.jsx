@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
-import { createContext, useContext, useState, useEffect} from "react";
-import {   logout, getAllSalons } from "../../api/requests";
+import { createContext, useContext, useState, useEffect } from "react";
+import { logout, getAllRest } from "../../api/requests";
 import { login, verify } from '../../api/reqCredentials';
 export const AuthContext = createContext();
 export const useAuth = () => {                           // Usa el contexto 
@@ -11,16 +11,15 @@ export const useAuth = () => {                           // Usa el contexto
     return context;
 }
 
-
 export const AuthProvider = ({ children }) => {
     const [show, setShow] = useState(true)
     const [user, setUser] = useState(null)
     const [adminAuth, setAdminAuth] = useState(false)
-    const [isAuthenticated, setIsAuthenticated] = useState(null) 
+    const [isAuthenticated, setIsAuthenticated] = useState(null)
     const [error, setError] = useState("")
-    const [salons, setSalons] = useState([])
+    const [rest, setRest] = useState([])
     const [loadData, setLoadData] = useState(null)
-    const [showModal, setShowModal] = useState(false)
+    const [showModal, setShowModal] = useState({show: false, restaurant:{}})
     const signin = async (user) => {
         try {
             console.log(user)
@@ -39,7 +38,7 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(true);
         } catch (error) {
             console.log(error.response.data.error)
-             setError(error.response.data.error)
+            setError(error.response.data.error)
         }
     }
     const LogOut = async () => {
@@ -64,7 +63,7 @@ export const AuthProvider = ({ children }) => {
     }, [error])
     useEffect(() => {
         const validate = async () => {
-            const cookies = Cookies.get()   
+            const cookies = Cookies.get()
             // console.log(cookies.token)                                // Revisamos si tenemos cookies
             if (!cookies.token) {
                 setAdminAuth(false)                                                                      // Si no hay token
@@ -77,7 +76,7 @@ export const AuthProvider = ({ children }) => {
                 const res = await verify(cookies.token);             // lo verificamos
                 console.log(res)
                 if (!res.data) setIsAuthenticated(false)                        // De no serverificado
-                if (cookies.rol == "admin") setAdminAuth(true)                        
+                if (cookies.rol == "admin") setAdminAuth(true)
 
                 setIsAuthenticated(true);                                       // SI pasa el test del backend..
                 setUser(res.data);
@@ -91,31 +90,17 @@ export const AuthProvider = ({ children }) => {
         }
         validate(); // EJECUTA
     }, []);
-
     useEffect(() => {
-        const fetchsSalons = async () => {
+        const fetchRest = async () => {
             try {
-               const res = await getAllSalons()
-               setSalons(res.data?.data)
-               
+                const res = await getAllRest()
+                setRest(res.data.restaurants)
             } catch (error) {
                 console.log(error)
             }
         }
-        fetchsSalons();
+        fetchRest()
     }, [])
-        // useEffect(() => {
-        //     const fetchRooms = async () => {
-        //         try {
-        //         const res = await getAllSalons()
-        //         setSalons(res.data?.salons)
-                
-        //         } catch (error) {
-        //             console.log(error)
-        //         }
-        //     }
-        //     fetchRooms();
-        // }, [loadData])
     return (
         <AuthContext.Provider value={{ //Export 
             setShow,
@@ -124,11 +109,11 @@ export const AuthProvider = ({ children }) => {
             LogOut,
             isAuthenticated,
             adminAuth,
-            setUser, 
+            setUser,
             error,
-            salons,
-            showModal, 
-            setShowModal 
+            showModal,
+            setShowModal,
+            rest
         }}>
             {children}
         </AuthContext.Provider>

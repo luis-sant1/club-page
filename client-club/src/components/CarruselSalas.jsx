@@ -1,8 +1,11 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Salones from './Salones';
+import { useState, useEffect } from 'react';
+import { getAllSalons } from '../api/requests';
 import { useAuth } from './context/AuthContext';
 export default function CarruselSalas() {
+    const [salons, setSalons] = useState([])
     const { showModal } = useAuth()
     const responsive = {
         superLargeDesktop: {
@@ -24,8 +27,18 @@ export default function CarruselSalas() {
         }
 
     };
-    const { salons } = useAuth()
+    useEffect(() => {
+        const fetchsSalons = async () => {
+            try {
+                const res = await getAllSalons()
+                setSalons(res.data?.data)
 
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchsSalons();
+    }, [])
 
     return (
 
