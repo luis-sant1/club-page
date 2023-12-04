@@ -20,7 +20,6 @@ export default function CreateDeport() {
         values = { ...values, imagen: values.imagen[0]};
         
         try {
-            console.log(values)
             await sendDataUrl(formData)
             await Swal.fire({
                 title: "Habitación creada con exito.",

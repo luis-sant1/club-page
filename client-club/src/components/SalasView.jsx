@@ -20,7 +20,7 @@ export default function SalasView() {
         fetchSalon();
     }, [])
 
-    console.log(data)
+    console.log(data.imagen)
 
     return(
         <div className='w-full h-full dark:bg-gray-800  bg-white'>
@@ -28,7 +28,7 @@ export default function SalasView() {
                 <img 
                 className="h-80 w-full relative object-cover md:h-full lg:h-4/6 "
 
-                src="https://www.hostalrestauranteeltrillero.es/images/2017/06/28/sala-fiestas-alcaniz-el-trillero.jpg" alt="Imagen de la habitación" />
+                src={data?.imagen?.[0]?.secure_url} alt="Imagen de la habitación" />
                 <div className="absolute z-5 m-auto left-0 right-0  text-white flex self-end items-end w-full pb-10" >
                     <div className="flex justify-center w-1/2">
                         <h2  className="text-4xl pl-1 font-extralight flex  lg:text-5xl">{data?.nombre}</h2>
@@ -60,20 +60,12 @@ export default function SalasView() {
                     </div>
             </div>
             <div className="w-11/12 mr-auto ml-auto pt-3 border-b border-black lg:hidden">
-                <img src="https://www.hostalrestauranteeltrillero.es/images/2017/06/28/sala-fiestas-alcaniz-el-trillero.jpg" alt="Imagen de la habitación" className="w-full h-96 pb-3 md:h-full lg:pb-8" />
+                <img src={data?.imagen?.[1]?.secure_url} alt="Imagen de la habitación" className="w-full h-96 pb-3 md:h-full lg:pb-8" />
             </div> 
 
             <div className='hidden md:hidden lg:flex lg:border-b lg:border-black lg:w-[97%] lg:mr-auto lg:ml-auto'>
                 
             </div>
-
-            {/* <div className='pt-5'>
-                <div className='flex justify-center'>
-                    <h1 className='text-black font-light text-5xl md:text-6xl md:pb-4 lg:text-7xl lg:pb-6 dark:text-white'>Reviews</h1>
-                </div>
-
-                <CarouselReviews/>
-            </div> */}
             {
                 isAuthenticated && <SalasButtons id = {id} />
             }

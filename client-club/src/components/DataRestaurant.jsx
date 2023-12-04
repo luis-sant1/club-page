@@ -1,32 +1,20 @@
+import { useEffect, useState } from "react"
 import Restaurant from "./Restaurant"
-
+import { getAllRest } from "../api/requests"
 export default function DataRestaurant() {
-    const data = [
-        {
-            "type": "Restaurant 1",
-            "promo": "Restaurant espacializado en mariscos, cuenta con mesas desde para 1 hasta para 8 personas.",
-            "link": "",
-            "img": "https://www.hotelabelux.com/themes/demo/assets/images/triple.jpg"
-        },
-        {
-            "type": "Restaurant 2",
-            "promo": "Restaurant espacializado en cortes de carne",
-            "link": "",
-            "img": "https://images.hola.com/imagenes/decoracion/20230425230358/dormitorios-inspirados-en-habitaciones-hoteles-am/1-237-28/habitaciones-hotel-5a-a.jpg"
-        },
-        {
-            "type": "Restaurant 3",
-            "promo": "Restaurant espacializado en comida rapida",
-            "link": "",
-            "img": "https://hotelhumberto.com.mx/img/site/vista-habitaciones/4-personas-2.jpg"
-        },
-        {
-            "type": "Restaurant 4",
-            "promo": "Restaurant espacializado en tapas y cocteles",
-            "link": "",
-            "img": "https://bestlocationhotels.com/wp-content/uploads/2019/04/TRYP-by-Wyndham-Times-Square-South.jpg"
-        },
-    ]
+    const [data, setData] = useState([])
+    useEffect(()=> {
+        const fetchRest = async () => {
+            try {
+                const res = await getAllRest()
+                setData(res.data.restaurants)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchRest()
+    }, [])
+    console.log(data)
     return(
         <div className='lg:grid lg:grid-cols-2 '>
                 
@@ -34,7 +22,7 @@ export default function DataRestaurant() {
                 {
                     data?.map((x, i) => {
                         return ( 
-                            <Restaurant  key={i} type={x.type} promo={x.promo} img={x.img}/>
+                            <Restaurant  key={i} name={x.name} description={x.description} img={x.imagen}/>
                         )
                     })
                 }

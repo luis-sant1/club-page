@@ -69,7 +69,6 @@ export default function CarruselDeport () {
         }
         fetchSports()
     }, [])
-    console.log(data)
     return(
         <div className='w-fulloverflow-hidden m-auto'>
 
@@ -77,7 +76,6 @@ export default function CarruselDeport () {
                 responsive={responsive}>
                 {
                     data?.map((x, i) => {
-                        console.log(x)
                         return (
                             <Depor key={i} name={x.name} floor={x.floorType} roof={x.roofType} img={x.img} mts2 = {x.mts2} price = {x.price} avaible = {x.avaible} />
                         )
