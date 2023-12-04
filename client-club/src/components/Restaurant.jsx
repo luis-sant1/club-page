@@ -1,7 +1,7 @@
 import { useAuth } from "./context/AuthContext"
 export default function Restaurant(props) {
     const {setShowModal} = useAuth()
-    const seeMenu = (restaurant) => setShowModal({show: true, restaurant:restaurant })
+    const seeMenu = (restaurant) => setShowModal({show: true, data: restaurant, isEvent: false })
     return(
         <div className=" grid grid-cols-1 justify-items-center pb-10  ">
             <div className="grid grid-cols-2 w-full  md-pl-5 ">

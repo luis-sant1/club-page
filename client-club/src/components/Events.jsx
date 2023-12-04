@@ -1,5 +1,8 @@
+import { useAuth } from "./context/AuthContext"
 
 export default function Events(props) {
+    const {setShowModal} = useAuth()
+    const seeMenu = (events) => setShowModal({show: true, data:events, isEvent: true })
     return (
         <div className="m-7 relative text-white ">
             <img src={props.img.secure_url}
@@ -10,7 +13,7 @@ export default function Events(props) {
                 <p className="text-white font-light pl-2 pb-2 pr-2 hidden top-12 left-0 group-hover:flex">{props.description}<span className="font-bold"></span></p>
                 <div className="w-[60px] flex justify-center">
                     <button  target="_blank"
-                        onClick={(e) => props.openDetail(e, props.data)}
+                        onClick={()=> {seeMenu(props.events)}}
                         className="width-[50]"><span className="text-lg relative after:bg-white after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transitiz on-all after:duration-300 cursor-pointer hidden group-hover:flex ">Ver mas</span>
                     </button>
                 </div>

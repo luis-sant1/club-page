@@ -52,7 +52,7 @@ export default function CarruselEventos() {
                 {
                     data?.map((x, i) => {
                         return (
-                            <Events key={i} name={x.name} site={x.site} description={x.description} img={x.img} entryDate={x.entryDate} exitDate={x.exitDate} entryHour={x.entryHour} exitHour={x.exitHour} />
+                            <Events key={i} events={x} name={x.name} site={x.site} description={x.description} img={x.img} entryDate={x.entryDate} exitDate={x.exitDate} entryHour={x.entryHour} exitHour={x.exitHour} />
                         )
                     })
                 }

@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
     const [error, setError] = useState("")
     const [rest, setRest] = useState([])
     const [loadData, setLoadData] = useState(null)
-    const [showModal, setShowModal] = useState({show: false, restaurant:{}})
+    const [showModal, setShowModal] = useState({show: false, data:{}, isEvent: false})
     const signin = async (user) => {
         try {
             console.log(user)

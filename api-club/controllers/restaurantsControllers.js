@@ -175,7 +175,7 @@ const insertMany = async (req, res) => {
             name: "Green House",
             description: "Un restaurante de comida saludable, con un jardín ecológico y un concepto sostenible. Degusta platos como la ensalada de kale, el hummus de garbanzos o el batido de avena.",
             imagen: [{
-                secure_url: "https://content.wepik.com/statics/29838533/preview-page0.jpg"
+                secure_url: "https://marketplace.canva.com/EAE-b03gDk4/1/0/1131w/canva-menu-restaurante-moderno-negro-fs5JunWdmvU.jpg"
             },
             {
                 secure_url: "https://img.freepik.com/foto-gratis/restaurante-al-aire-libre-sillas-mesas-madera_181624-57563.jpg?t=st=1701639386~exp=1701639986~hmac=611bb8531a33c763d831d1e8267b3b7252a57db18fae7061622bad8a2fd04711"
