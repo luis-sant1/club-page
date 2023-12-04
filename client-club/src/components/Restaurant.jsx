@@ -13,10 +13,12 @@ export default function Restaurant(props) {
                     <div className="pl-2" >
                         <h2 className="text-xl font-light border-b border-black">{props.name}</h2>
                         <p className="font-light pt-5 md:pt-7 md:pb-3">{props.description}</p>
+                        <div className="flex justify-center">
                         <button 
                         onClick={()=> {setShowModal(true)}}
                         className="text-center"><span className=" text-lg relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer">Ver menú</span>
                         </button>
+                        </div>
                     </div>
                 </div>
             </div>
