@@ -13,10 +13,10 @@ const {
 router 
 
 .get('/getAll', getAll )
-.get('/getOne',  getOne)
+.get('/getOne/:_id',  getOne)
 .get('/insertMany',  insertMany)
-.put('/edit/:_id', upload.single('imagen'), editONe )
-.post('/create', upload.single('imagen'), create)
+.put('/edit/:_id',  upload.array(['imagen']), editONe )
+.post('/create',  upload.array(['imagen']), create)
 .delete('/delete/:_id',  deleteOne)
 
 module.exports = router
