@@ -10,7 +10,7 @@ export default function Salones(props) {
                     src={props.img[0].secure_url} alt="" />
             </div>
             <div className="hover:bg-black w-full z-50 h-full absolute opacity-70 md:w-[96%] lg:w-[97.5%]">
-                <div className="absolute z-10 hidden pr-2 pl-2 group-hover:block m-auto left-0 right-0 top-[40%] text-white " >
+                <div className="absolute z-10 hidden pr-2 pl-2 group-hover:block m-auto left-0 right-0 top-[33%] md:top-[40%] text-white " >
                     <h2 className="text-xl font-light">{props.name}</h2>
                     <Link
                         to={`/salasview/${props.id}`}
