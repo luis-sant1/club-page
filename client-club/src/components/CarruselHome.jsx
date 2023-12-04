@@ -62,7 +62,7 @@ const { showModal } = useAuth()
 
             <Carousel
              {
-                    ...(showModal && {arrows : false})
+                    ...(showModal.show && {arrows : false})
                 }
                 responsive={responsive}>
                 {

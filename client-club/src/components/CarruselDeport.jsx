@@ -42,7 +42,7 @@ export default function CarruselDeport () {
 
             <Carousel
                 {
-                    ...(showModal && {arrows : false})
+                    ...(showModal.show && {arrows : false})
                 }
                 
                 responsive={responsive}>

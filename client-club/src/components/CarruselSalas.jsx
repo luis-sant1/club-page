@@ -46,7 +46,7 @@ export default function CarruselSalas() {
 
             <Carousel
                 {
-                ...(showModal && { arrows: false })
+                ...(showModal.show && { arrows: false })
                 }
                 responsive={responsive}>
                 {
