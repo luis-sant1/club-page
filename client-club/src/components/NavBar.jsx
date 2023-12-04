@@ -19,11 +19,11 @@ export default function NavBar() {
             <div className="flex w-full justify-end pr-8 font-light text-2xl">
                
                         <>
-                            <Link to='#info' className="hidden md:flex p-3 font-light text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Acerca de</Link>
-                            <Link to='#sports' className="hidden md:flex p-3 font-light text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Deportes</Link>
-                            <Link to='#rest' className="hidden md:flex p-3 font-light text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Restaurantes</Link>   
-                            <Link to='#salons' className="hidden md:flex p-3 font-light text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Salones</Link> 
-                            <Link to='#events' className="hidden md:flex p-3 font-light text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Eventos</Link> 
+                            <Link to='#info' className="hidden md:flex p-3 font-light text-lg lg:text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Acerca de</Link>
+                            <Link to='#sports' className="hidden md:flex p-3 font-light text-lg lg:text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Deportes</Link>
+                            <Link to='#rest' className="hidden md:flex p-3 font-light text-lg lg:text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Restaurantes</Link>   
+                            <Link to='#salons' className="hidden md:flex p-3 font-light text-lg lg:text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Salones</Link> 
+                            <Link to='#events' className="hidden md:flex p-3 font-light text-lg lg:text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Eventos</Link> 
                         </>
                  
                 <div className="pt-2 pl-5">
