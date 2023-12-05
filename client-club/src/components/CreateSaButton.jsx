@@ -2,7 +2,7 @@ import { useNavigate } from "react-router"
 export default function CreateSaButton() {
     const navigate = useNavigate()
     const handleCreate = ()=> {
-        navigate('/create-rooms')
+        navigate('/create-salon')
     }
     return(
         <div className="bg-[rgba(230,230,230,1)]">

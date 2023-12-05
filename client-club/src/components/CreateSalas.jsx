@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form'
-import { sendDataUrl } from '../api/requests'
+import { createaSalon } from '../api/requests'
 import Swal from 'sweetalert2'
 export default function CreateSalas() {
     const { register, handleSubmit, control, formState: {
@@ -8,22 +8,29 @@ export default function CreateSalas() {
     
     const onSubmit = handleSubmit(async (values) => {
         const formData = new FormData();
-        formData.append("imagen", values.imagen[0]);
-        formData.append("title", values.title);
+        formData.append("nombre", values.nombre);
         formData.append("description", values.description);
+        formData.append("mts2", values.mts2);
+        formData.append("site", values.site);
+        formData.append("max", values.max);
+        formData.append("feature", values.feature);
         formData.append("price", values.price);
-        formData.append("promo", values.promo);
-        formData.append("modcon", values.modcon);
-        formData.append("modcon1", values.modcon1);
-        formData.append("modcon2", values.modcon2);
-        formData.append("modcon3", values.modcon3);
-        values = { ...values, imagen: values.imagen[0]};
+        const files = [];
+
+        for (const file of values.imagen) {
+            files.push(file)
+        }
+        console.log(files)
+        for (let i = 0; i < files.length; i++) {
+            formData.append(["imagen"], files[i]);
+        }
+
         
         try {
             console.log(values)
-            await sendDataUrl(formData)
+            await createaSalon(formData)
             await Swal.fire({
-                title: "Habitación creada con exito.",
+                title: "Salón creado con exito.",
                 icon: "success",
                 confirmButtonColor: "#9A5832"
             });
@@ -31,7 +38,7 @@ export default function CreateSalas() {
             
         } catch (error) {
             await Swal.fire({
-                title: "Ha ocurrido un error al crear la habitación.",
+                title: "Ha ocurrido un error al crear el salón.",
                 icon: "error",
                 confirmButtonColor: "#9A5832"
             });
@@ -50,10 +57,10 @@ export default function CreateSalas() {
                     <div className='pt-1'>
                         <input type="text"
                              className='font-light w-full border border-solid border-black grid h-10 p-2 text-black' 
-                            {...register('title', { required: true, minLength: 4, maxLength: 40, pattern: /^[a-zA-ZÀ-ÿ\s]{4,90}$/  })} />
+                            {...register('nombre', { required: true, minLength: 4, maxLength: 40, pattern: /^[a-zA-ZÀ-ÿ\s]{4,90}$/  })} />
                     </div>
                     {
-                        errors.title && (
+                        errors.nombre && (
                             <div className='flex flex-nowrap mt-2'>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
@@ -86,7 +93,7 @@ export default function CreateSalas() {
                     <div className='pt-1'>
                         <input type="text"
                            className='font-light w-full border border-solid border-black grid h-10 p-2 text-black'
-                            {...register('price', {required: true, minLength: 2, maxLength: 4})} />
+                            {...register('price', {required: true, minLength: 2, maxLength: 4, pattern: /^^\d+$/})} />
 
                     </div>
                     {
@@ -100,14 +107,14 @@ export default function CreateSalas() {
                         )
                     }
 
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Característica 1</label>
+                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Maxima capacidad de personas</label>
                     <div className='pt-1'>
                         <input type="text"
                              className='font-light w-full border border-solid border-black grid h-10 p-2 text-black'
-                            {...register('modcon1', {required: true, minLength: 4, maxLength: 90, pattern: /^[a-zA-ZÀ-ÿ\s]{4,90}$/ })} />
+                            {...register('max', {required: true, minLength: 4, maxLength: 90, pattern: /^^\d+$/})} />
 
                         {
-                            errors.modcons && (
+                            errors.maax && (
                                 <div className='flex flex-nowrap mt-2'>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
@@ -118,33 +125,35 @@ export default function CreateSalas() {
                         }
                     </div>
 
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Característica 2</label>
+                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Sitio</label>
                     <div className='pt-1'>
-                        <input type="text"
-
-                             className='font-light w-full border border-solid border-black grid h-10 p-2 text-black'
-                            {...register('modcon2', { required: true, minLength: 4, maxLength: 90, pattern: /^[a-zA-ZÀ-ÿ\s]{4,90}$/ })} />
-
-                        {
-                            errors.modcons && (
-                                <div className='flex flex-nowrap mt-2'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                                    </svg>
-                                    <p className='text-red-500 mx-1'>Campo Obligatorio.</p>
-                                </div>
-                            )
-                        }
+                        <select
+                            {...register('site', { required: true })}
+                            className='font-light h-10 w-full border border-solid border-black p-2 text-black'>
+                            <option value="" className='font-light'>Seleccionar:</option>
+                            <option value="Interior" className='font-light'>Interior</option>
+                            <option value="Exterior" className='font-light'>Exterior</option>
+                        </select>
                     </div>
+                    {
+                        errors.site && (
+                            <div className='flex flex-nowrap mt-2'>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                                </svg>
+                                <p className='text-red-500 mx-1'>Campo Obligatorio.</p>
+                            </div>
+                        )
+                    }
 
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Característica 3</label>
+                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Metros Cuadrados</label>
                     <div className='pt-1'>
                         <input type="text"
                             className='font-light w-full border border-solid border-black grid h-10 p-2 text-black'
-                            {...register('modcon3', { required: true, minLength: 4, maxLength: 90, pattern: /^[a-zA-ZÀ-ÿ\s]{4,90}$/})} />
+                            {...register('mts2', { required: true, minLength: 4, maxLength: 90, pattern: /^^\d+$/})} />
 
                         {
-                            errors.modcons && (
+                            errors.mts2 && (
                                 <div className='flex flex-nowrap mt-2'>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
@@ -155,15 +164,15 @@ export default function CreateSalas() {
                         }
                     </div>
 
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Característica 4</label>
+                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Característica extra</label>
                     <div className='pt-1'>
                         <input type="text"
 
                             className='font-light w-full border border-solid border-black grid h-10 p-2 text-black'
-                            {...register('modcon', { required: true, minLength: 4, maxLength: 90, pattern: /^[a-zA-ZÀ-ÿ\s]{4,90}$/ })} />
+                            {...register('feature', { required: true, minLength: 4, maxLength: 90, pattern: /^[a-zA-ZÀ-ÿ\s]{4,90}$/ })} />
 
                         {
-                            errors.modcons && (
+                            errors.feature && (
                                 <div className='flex flex-nowrap mt-2'>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
@@ -179,7 +188,7 @@ export default function CreateSalas() {
                     <div className="pt-2">
 
 
-                        <input type="file" className="font-light dark:text-white text-black"
+                        <input multiple type="file" className="font-light dark:text-white text-black"
                             id = 'imagen'
                              {...register('imagen', {required: true}) }  
                              />

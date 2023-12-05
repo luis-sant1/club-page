@@ -14,6 +14,7 @@ import ProtectedRoutes from './components/context/ProtectedRoutes'
 import CreateDeport from './components/CreateDeport'
 import CreateRest from "./components/CreateRest"
 import  CreateEven  from "./components/CreateEven"
+import CreateSalas from './components/CreateSalas'
 function App() {
   const { showModal, setShowModal } = useAuth()
   const closeModal = () => {
@@ -37,6 +38,7 @@ function App() {
           <Route path="/create-sport" element={<CreateDeport />} />
           <Route path="/create-rest" element={<CreateRest />} />
           <Route path="/create-event" element={<CreateEven />} />
+          <Route path="/create-salon" element={<CreateSalas />} />
         </Route>
       </Routes>
       <Footer />

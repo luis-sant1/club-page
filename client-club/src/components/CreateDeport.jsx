@@ -107,7 +107,7 @@ export default function CreateDeport() {
                         </select>
                     </div>
                     {
-                        errors.room && (
+                        errors.roofType && (
                             <div className='flex flex-nowrap mt-2'>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
@@ -124,7 +124,7 @@ export default function CreateDeport() {
                             {...register('mts2', { required: true, minLength: 4, maxLength: 90, pattern: /^^\d+$/})} />
 
                         {
-                            errors.modcons && (
+                            errors.mts2 && (
                                 <div className='flex flex-nowrap mt-2'>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
@@ -143,7 +143,7 @@ export default function CreateDeport() {
                             {...register('price', { required: true, minLength: 4, maxLength: 90, pattern: /^^\d+$/})} />
 
                         {
-                            errors.modcons && (
+                            errors.price && (
                                 <div className='flex flex-nowrap mt-2'>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
@@ -166,7 +166,7 @@ export default function CreateDeport() {
                              
                     </div>
                     {
-                        errors.imagen && (
+                        errors.img && (
                             <div className='flex flex-nowrap mt-2'>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
