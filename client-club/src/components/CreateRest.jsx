@@ -1,37 +1,32 @@
 import { useForm } from 'react-hook-form'
-import { sendDataUrl } from '../api/requests'
+import { createaRest } from '../api/requests'
 import Swal from 'sweetalert2'
 export default function CreateRest() {
     const { register, handleSubmit, control, formState: {
         errors
     }} = useForm()
-    
+     
     const onSubmit = handleSubmit(async (values) => {
         const formData = new FormData();
         formData.append("imagen", values.imagen[0]);
-        formData.append("title", values.title);
+        formData.append("name", values.name);
         formData.append("description", values.description);
-        formData.append("price", values.price);
-        formData.append("promo", values.promo);
-        formData.append("modcon", values.modcon);
-        formData.append("modcon1", values.modcon1);
-        formData.append("modcon2", values.modcon2);
-        formData.append("modcon3", values.modcon3);
         values = { ...values, imagen: values.imagen[0]};
         
         try {
             console.log(values)
-            await sendDataUrl(formData)
+            await createaRest(formData)
             await Swal.fire({
-                title: "Habitación creada con exito.",
+                title: "Restaurante añadido con exito.",
                 icon: "success",
                 confirmButtonColor: "#9A5832"
             });
             window.location.href = '/*'
             
         } catch (error) {
+            console.log(error)
             await Swal.fire({
-                title: "Ha ocurrido un error al crear la habitación.",
+                title: "Ha ocurrido un error al añadir Restaurante.",
                 icon: "error",
                 confirmButtonColor: "#9A5832"
             });
@@ -50,7 +45,7 @@ export default function CreateRest() {
                     <div className='pt-1'>
                         <input type="text"
                              className='font-light w-full border border-solid border-black grid h-10 p-2 text-black' 
-                            {...register('title', { required: true, minLength: 4, maxLength: 40, pattern: /^[a-zA-ZÀ-ÿ\s]{4,90}$/  })} />
+                            {...register('name', { required: true, minLength: 4, maxLength: 40, pattern: /^[a-zA-ZÀ-ÿ\s]{4,90}$/  })} />
                     </div>
                     {
                         errors.title && (
@@ -81,11 +76,11 @@ export default function CreateRest() {
                         }
                     </div>
 
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Imagen del menú</label>
+                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Selecciona primero una imagen del menú y luego una imagen representativa.</label>
                     <div className="pt-2">
 
 
-                        <input type="file" className="font-light dark:text-white text-black"
+                        <input multiple type="file" className="font-light dark:text-white text-black"
                             id = 'imagen'
                              {...register('imagen', {required: true}) }  
                              />

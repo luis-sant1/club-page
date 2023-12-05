@@ -22,9 +22,7 @@ export default function Depor(props) {
                             <li className="text-black font-light pl-2 pr-2 top-12 left-0 pb-2">Disponible: {props.avaible}</li>
                             <li className="text-black font-light pl-2 pr-2 top-12 left-0 pb-2">Precio por hora: {props.price}$</li>
                         </ul>
-                        {
-                            adminAuth && <ButtonEditDe />
-                        }
+                     
                         {
                             isAuthenticated &&
                             <div className=' grid justify-items-center   pr-1 md:pr-0 lg:w-1/2'>
@@ -47,9 +45,7 @@ export default function Depor(props) {
                         <li className="text-black font-light pl-8 pr-2 top-12 left-0 pb-2">Disponible: {props.avaible}</li>
                         <li className="text-black font-light pl-8 pr-2 top-12 left-0 pb-2">Precio por hora: {props.price}$</li>
                     </ul>
-                    {
-                        adminAuth && <ButtonEditDe />
-                    }
+                    
                     {
                         isAuthenticated &&
                         <div className=' grid justify-items-center   pr-1 md:pr-0 lg:w-1/2'>

@@ -4,7 +4,7 @@ export default function ButtonDeport() {
     const {adminAuth} = useAuth()
     const navigate = useNavigate()
     const handleCreate = ()=> {
-        navigate('/create-rooms')
+        navigate('/create-sport')
     }
     if(adminAuth){
         return(

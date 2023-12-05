@@ -7,32 +7,37 @@ import Landing from "./components/landing"
 import NavBar from "./components/NavBar"
 import ScrollToHashElement from './utils/ScrollToHashElement'
 import ScrollToTop from './utils/ScrollToTop'
-import Test from './components/Test'
 import Form from './components/Form'
 import Modal from "./components/Modal/Modal"
 import { useAuth } from "./components/context/AuthContext"
+import ProtectedRoutes from './components/context/ProtectedRoutes'
+import CreateDeport from './components/CreateDeport'
+import CreateRest from "./components/CreateRest"
 function App() {
-  const {showModal, setShowModal} = useAuth()
-  const closeModal = ()=> {
-    setShowModal({show: false, restaurant:{}})
+  const { showModal, setShowModal } = useAuth()
+  const closeModal = () => {
+    setShowModal({ show: false, restaurant: {} })
   }
   return (
     <BrowserRouter>
-    {
-      showModal.show && <Modal {...showModal} onClose = {closeModal}/>
-    }
-      
-      <ScrollToTop/>
+      {
+        showModal.show && <Modal {...showModal} onClose={closeModal} />
+      }
+
+      <ScrollToTop />
       <ScrollToHashElement />
-        <NavBar />
-        <Routes>
-          <Route path="/*" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/salasview/:id" element={<SalasView />} />
-          <Route path="/test" element={<Test />} />
-          <Route path="/form/:id" element={<Form />} />
-        </Routes>
-        <Footer />
+      <NavBar />
+      <Routes>
+        <Route path="/*" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/salasview/:id" element={<SalasView />} />
+        <Route path="/form/:id" element={<Form />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/create-sport" element={<CreateDeport />} />
+          <Route path="/create-rest" element={<CreateRest />} />
+        </Route>
+      </Routes>
+      <Footer />
     </BrowserRouter>
 
   )

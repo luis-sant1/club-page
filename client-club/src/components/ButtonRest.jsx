@@ -4,7 +4,7 @@ export default function ButtonRest() {
     const { adminAuth } = useAuth()
     const navigate = useNavigate()
     const handleCreate = () => {
-        navigate('/create-rooms')
+        navigate('/create-rest')
     }
     if (adminAuth) {
         return (
