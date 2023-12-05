@@ -21,7 +21,7 @@ export default function CreateDeport() {
         try {
             await createaSport(formData)
             await Swal.fire({
-                title: "Deporte añadido.",
+                title: "Evento añadido.",
                 icon: "success",
                 confirmButtonColor: "#9A5832"
             });
@@ -30,7 +30,7 @@ export default function CreateDeport() {
         } catch (error) {
             console.log(error)
             await Swal.fire({
-                title: "Ha ocurrido un error al añadir deporte.",
+                title: "Ha ocurrido un error al añadir Evento.",
                 icon: "error",
                 confirmButtonColor: "#9A5832"
             });

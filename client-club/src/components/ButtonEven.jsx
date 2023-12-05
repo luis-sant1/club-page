@@ -4,7 +4,7 @@ export default function ButtonEvent() {
     const { adminAuth } = useAuth();
     const navigate = useNavigate()
     const handleCreate = () => {
-        navigate('/create-rooms')
+        navigate('/create-event')
     }
     if (adminAuth) {
         return (

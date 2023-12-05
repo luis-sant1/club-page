@@ -1,47 +1,45 @@
-// Este es el de crear evento, se creo basado en el formulario de reserva 
-
 import { useForm } from 'react-hook-form'
-import { formReq } from '../api/requests'
-import { useState } from 'react'
-// import Swal from 'sweetalert2'
-// import 'sweetalert2/src/sweetalert2.scss'
-import { useAuth } from './context/AuthContext'
-import { useNavigate, useParams } from 'react-router-dom'
+import { createaSport } from '../api/requests'
+import Swal from 'sweetalert2'
 export default function CreateEven() {
-    const {id} = useParams()
-    const navigate = useNavigate()
-    const {setShow} = useAuth()
-    const [error, setError] = useState([])
-    const { register, handleSubmit, formState: {
+    const { register, handleSubmit, control, formState: {
         errors
-    } } = useForm()
-    const toHome = () => {
-        navigate('/')
-        setShow(true)
-    }
-
+    }} = useForm()
+    
     const onSubmit = handleSubmit(async (values) => {
+        console.log(values)
+        const formData = new FormData();
+        formData.append("img", values.img[0]);
+        formData.append("name", values.name);
+        formData.append("site", values.site);
+        formData.append("description", values.description);
+        formData.append("entryDate", values.entryDate);
+        formData.append("exitDate", values.exitDate);
+        formData.append("entryHour", values.entryHour);
+        formData.append("exitHour", values.exitHour);
+        values = { ...values, imagen: values.img[0]};
+        
         try {
-            console.log(values)
-            const res = await formReq(values, id);
-            console.log(res)
-            if (res) {
-                console.log(values)
-                Swal.fire({
-                    title: "¡Reservación enviada!",
-                    text: "Recibiras un correo de confirmación a: " + values.email,
-                    icon: "success",
-                    confirmButtonColor: "#9A5832"
-                });
-                
-            }
+            await createaSport(formData)
+            await Swal.fire({
+                title: "Deporte añadido.",
+                icon: "success",
+                confirmButtonColor: "#9A5832"
+            });
+            window.location.href = '/*'
+            
         } catch (error) {
-            console.log(error.response.data.error)
-            return setError(error.response.data.error)
-        }
-        toHome()
+            console.log(error)
+            await Swal.fire({
+                title: "Ha ocurrido un error al añadir deporte.",
+                icon: "error",
+                confirmButtonColor: "#9A5832"
+            });
+        } 
     })
-        ;
+
+   
+
     return (
 
         <div className='h-full dark:bg-gray-800 pb-56 bg-white'>
@@ -99,10 +97,10 @@ export default function CreateEven() {
 
                         <div className='grid grid-cols-2 '>
                             <input type="time"
-                                {...register('entryDate', { required: true })}
+                                {...register('entryHour', { required: true })}
                                 className='text-black font-light h-10 w-8/12 border border-solid border-black p-2' />
                             <input type="time"
-                                {...register('exitDate', { required: true })}
+                                {...register('exitHour', { required: true })}
                                 className='text-black font-light h-10 w-8/12 border border-solid border-black p-2' />
                         </div>
                         {
@@ -139,10 +137,10 @@ export default function CreateEven() {
                     <div className='pt-1'>
                         <input type="text"
                             className='font-light w-full border border-solid border-black grid h-10 p-2 text-black'
-                            {...register('description', {required: true, minLength: 4, maxLength: 200, pattern: /^[a-zA-ZÀ-ÿ\s]{4,90}$/ })} />
+                            {...register('site', {required: true, minLength: 4, maxLength: 200, pattern: /^[a-zA-ZÀ-ÿ\s]{4,90}$/ })} />
 
                         {
-                            errors.description && (
+                            errors.site && (
                                 <div className='flex flex-nowrap mt-2'>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
@@ -153,14 +151,18 @@ export default function CreateEven() {
                         }
                     </div>
 
-                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Edades de admisión</label>
-                    <div className='pt-1'>
-                        <input type="text"
-                            {...register('age', { required: true, minLength: 7, maxLength: 8, })}
-                            className='text-black font-light w-full border border-solid border-black grid h-10 p-2' />
+                    <label htmlFor="" className='font-light pt-2 dark:text-white text-black'>Imagen</label>
+                    <div className="pt-2">
+
+
+                        <input type="file" className="font-light dark:text-white text-black"
+                            id = 'img'
+                             {...register('img', {required: true}) }  
+                             />
+                             
                     </div>
                     {
-                        errors.age && (
+                        errors.imagen && (
                             <div className='flex flex-nowrap mt-2'>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="text-red-500 w-6 h-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
@@ -169,14 +171,8 @@ export default function CreateEven() {
                             </div>
                         )
                     }
-  
-                    {
-                        error.map((error, i) => (
-                            <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center' >{error.msg}</div>
-                        ))
-                    }
                     <div className='pt-3 grid justify-items-center mb-4'>
-                        <button type="submit" className='font-light bg-[rgba(95,111,82,1)] w-32 h-10 text-white text-2xl'>Reserva</button>
+                        <button type="submit" className='font-light bg-[rgba(95,111,82,1)] w-32 h-10 text-white text-2xl'>Crear</button>
                     </div>
                 </form>
             </div>
