@@ -14,7 +14,7 @@ export const useAuth = () => {                           // Usa el contexto
 export const AuthProvider = ({ children }) => {
     const [show, setShow] = useState(true)
     const [user, setUser] = useState(null)
-    const [adminAuth, setAdminAuth] = useState(false)
+    const [adminAuth, setAdminAuth] = useState(null)
     const [isAuthenticated, setIsAuthenticated] = useState(null)
     const [error, setError] = useState("")
     const [rest, setRest] = useState([])
@@ -26,21 +26,24 @@ export const AuthProvider = ({ children }) => {
             const res = await login(user)
             console.log(res)
             const userRole = res.data.user.user.role[0].toString()
+            console.log(user)
             console.log(userRole)
             if (userRole === 'admin') {
                 setUser(res.data);
                 setIsAuthenticated(true);
-                return setAdminAuth(true)
+                setAdminAuth(true)
             };
 
             console.log(res.data);
             setUser(res.data);
             setIsAuthenticated(true);
+            return res
         } catch (error) {
             console.log(error.response.data.error)
             setError(error.response.data.error)
         }
     }
+    console.log(adminAuth)
     const LogOut = async () => {
         try {
             const res = await logout()

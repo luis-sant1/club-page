@@ -1,25 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from 'react-hook-form'
-import {  useAuth } from "./context/AuthContext";
+import { useAuth } from "./context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
-export default function Login({ toPage, setPage }) {
+export default function Login() {
+  
     const navigate = useNavigate()
-    const { signin, error, isAuthenticated } = useAuth()
+    const { signin, error, adminAuth } = useAuth()
+    const alertFun = async () => {
+        Swal.fire({
+            title: "Sesión inciada correctamente.",
+            text: "Bienvenido.",
+            icon: "success",
+            confirmButtonColor: "#9A5832"
+        });
+        navigate('/*')
+    }
     const { register, handleSubmit, formState: {
         errors                                                  // Errores del formState
     } } = useForm();
 
     const onSubmit = handleSubmit(
         async (user) => {
-            await signin(user)
+            try {
+                const res = await signin(user)
+                if (res.status) alertFun()
+            } catch (error) {
+                return false
+            }
         }
     )
 
     return (
         <div className='h-[100%] dark:bg-gray-800 pb-96 bg-white text-black'>
             <div className="mr-auto ml-auto w-11/12 md:w-7/12 lg:w-3/12 ">
-                <form className="grid grid-cols-1 justify-center h-full "  onSubmit={onSubmit}>
+                <form className="grid grid-cols-1 justify-center h-full " onSubmit={onSubmit}>
                     <div className="pt-24">
                         <h1 className="text-center font-light text-3xl md:text-4xl dark:text-white">Iniciar Sesión</h1>
                     </div>
@@ -73,7 +89,8 @@ export default function Login({ toPage, setPage }) {
 
                     <div className='pt-10 grid justify-items-center mb-4 pb-32'>
 
-                        <button type="submit" className="font-light bg-[rgba(95,111,82,1)] w-44 h-10 text-white text-2xl">
+                        <button
+                            type="submit" className="font-light bg-[rgba(95,111,82,1)] w-44 h-10 text-white text-2xl">
                             Iniciar Sesión
                         </button>
                     </div>

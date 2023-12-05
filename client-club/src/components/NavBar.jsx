@@ -1,7 +1,9 @@
 import { useNavigate, Link } from "react-router-dom"
+import { useAuth } from "./context/AuthContext"
 export default function NavBar() {
+    const { isAuthenticated, LogOut } = useAuth()
     const navigate = useNavigate()
-    const toHome = ()=> {
+    const toHome = () => {
         navigate("/*")
         // window.location.href = "/*"
     }
@@ -17,19 +19,30 @@ export default function NavBar() {
             </div>
 
             <div className="flex w-full justify-end pr-8 font-light text-2xl">
-               
-                        <>
-                            <Link to='#info' className="hidden md:flex p-3 font-light text-lg lg:text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Acerca de</Link>
-                            <Link to='#sports' className="hidden md:flex p-3 font-light text-lg lg:text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Deportes</Link>
-                            <Link to='#rest' className="hidden md:flex p-3 font-light text-lg lg:text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Restaurantes</Link>   
-                            <Link to='#salons' className="hidden md:flex p-3 font-light text-lg lg:text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Salones</Link> 
-                            <Link to='#events' className="hidden md:flex p-3 font-light text-lg lg:text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Eventos</Link> 
-                        </>
-                 
+
+                <>
+                    <Link to='#info' className="hidden md:flex p-3 font-light text-lg lg:text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Acerca de</Link>
+                    <Link to='#sports' className="hidden md:flex p-3 font-light text-lg lg:text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Deportes</Link>
+                    <Link to='#rest' className="hidden md:flex p-3 font-light text-lg lg:text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Restaurantes</Link>
+                    <Link to='#salons' className="hidden md:flex p-3 font-light text-lg lg:text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Salones</Link>
+                    <Link to='#events' className="hidden md:flex p-3 font-light text-lg lg:text-2xl cursor-pointer relative after:bg-black after:absolute after:h-0.5 after:w-0 after:bottom-1 after:left-0 hover:after:w-full after:transition-all after:duration-300 ">Eventos</Link>
+                </>
+
                 <div className="pt-2 pl-5">
-                    <button
-                        onClick={toLogin}
-                        className='font-light bg-[rgba(95,111,82,1)] w-32 h-10 text-white text-2xl'>Iniciar Sesión</button>
+
+                    {
+                        isAuthenticated ?
+                             <button
+                                onClick={LogOut}
+                                className='font-light bg-[rgba(95,111,82,1)] w-32 h-10 text-white text-2xl'>Cerrar Sesión
+                            </button>:
+                             <button
+                             onClick={toLogin}
+                             className='font-light bg-[rgba(95,111,82,1)] w-32 h-10 text-white text-2xl'>Iniciar Sesión
+                         </button>
+
+                    }
+
                 </div>
             </div>
             <style>
