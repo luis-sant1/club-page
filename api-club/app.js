@@ -33,7 +33,6 @@ app.use(cookieParser())
 
 // FIX CORS
 app.use(cors({
-    origin: 'http://localhost:5173',
     credentials: true
 }))
 
